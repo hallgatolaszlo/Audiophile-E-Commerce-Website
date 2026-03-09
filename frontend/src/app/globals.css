@@ -1,0 +1,132 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap");
+
+:root {
+	/* Colors */
+	--primary-orange: #d87d4a;
+	--primary-orange-light: #fbaf85;
+	--jet-black: #101010;
+	--pure-black: #000000;
+	--light-gray: #f1f1f1;
+	--off-white: #fafafa;
+	--white: #fafafa;
+
+	/* Font */
+	--font: "Manrope", sans-serif;
+}
+
+body {
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	font-family: var(--font);
+	font-weight: 500;
+	font-size: 15;
+	line-height: 25px;
+}
+
+* {
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: var(--font);
+	font-weight: 700;
+	text-transform: uppercase;
+}
+
+h1 {
+	font-size: 56px;
+	line-height: 58px;
+	letter-spacing: 2px;
+}
+
+h2 {
+	font-size: 40px;
+	line-height: 44px;
+	letter-spacing: 1.5px;
+}
+
+h3 {
+	font-size: 32px;
+	line-height: 36px;
+	letter-spacing: 1.15px;
+}
+
+h4 {
+	font-size: 28px;
+	line-height: 38px;
+	letter-spacing: 2px;
+}
+
+h5 {
+	font-size: 24px;
+	line-height: 33px;
+	letter-spacing: 1.7px;
+}
+
+h6 {
+	font-size: 18px;
+	line-height: 24px;
+	letter-spacing: 1.3px;
+}
+
+.overline {
+	font-family: var(--font);
+	font-weight: 400;
+	font-size: 14px;
+	text-transform: uppercase;
+	line-height: 19px;
+	letter-spacing: 10px;
+}
+
+.sub-title {
+	font-family: var(--font);
+	font-weight: 700;
+	font-size: 13px;
+	text-transform: uppercase;
+	line-height: 25px;
+	letter-spacing: 1px;
+}
+
+button {
+	width: 160px;
+	height: 48px;
+}
+
+.button-1 {
+	background-color: var(--primary-orange);
+	color: var(--white);
+}
+
+.button-1:hover {
+	background-color: var(--primary-orange-light);
+}
+
+.button-2 {
+	background-color: var(--white);
+	color: var(--pure-black);
+}
+
+.button-2:hover {
+	background-color: var(--pure-black);
+	color: var(--white);
+}
+
+.button-3 {
+	background-color: var(--white);
+	color: var(--pure-black);
+}
+
+.button-3:hover {
+	color: var(--primary-orange);
+}
+
+.button-3 .right-arrow {
+	color: var(--primary-orange);
+}
