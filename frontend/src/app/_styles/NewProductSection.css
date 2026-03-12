@@ -1,0 +1,20 @@
+.new-product-image {
+	position: absolute;
+	z-index: -1;
+	width: 100vw;
+	object-fit: contain;
+	background-color: var(--eerie-black);
+}
+
+.new-product-text-container {
+	display: flex;
+	width: 100%;
+	align-items: center;
+}
+
+.new-product-text {
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+	width: 380px;
+}

@@ -1,9 +1,16 @@
 package main
 
-// "github.com/gorilla/mux"
+import (
+	"log"
+	"net/http"
+
+	"github.com/gorilla/mux"
+)
 
 func main() {
-//  router := mux.NewRouter()
+	connectToDB()
+	router := mux.NewRouter()
+	router.HandleFunc("/products", productsHandler).Methods("GET")
 
- connectToDB()
+	log.Fatal(http.ListenAndServe(":8080", router))
 }

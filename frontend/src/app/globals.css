@@ -1,17 +1,29 @@
 @import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap");
+@import "./_styles/Navbar.css";
+@import "./_styles/NewProductSection.css";
 
 :root {
 	/* Colors */
 	--primary-orange: #d87d4a;
 	--primary-orange-light: #fbaf85;
+	--dark-tone-ink: #121212;
+	--eerie-black: #191919;
 	--jet-black: #101010;
 	--pure-black: #000000;
+	--dark-gray: #313131;
 	--light-gray: #f1f1f1;
 	--off-white: #fafafa;
-	--white: #fafafa;
+	--white: #ffffff;
 
 	/* Font */
 	--font: "Manrope", sans-serif;
+
+	/* Sizing */
+	--navbar-height: 97px;
+}
+
+html {
+	overflow-x: hidden;
 }
 
 body {
@@ -21,6 +33,7 @@ body {
 	font-weight: 500;
 	font-size: 15;
 	line-height: 25px;
+	background-color: var(--off-white);
 }
 
 * {
@@ -97,6 +110,8 @@ h6 {
 button {
 	width: 160px;
 	height: 48px;
+	border: none;
+	cursor: pointer;
 }
 
 .button-1 {
@@ -119,6 +134,10 @@ button {
 }
 
 .button-3 {
+	width: fit-content;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	background-color: var(--white);
 	color: var(--pure-black);
 }
@@ -127,6 +146,15 @@ button {
 	color: var(--primary-orange);
 }
 
-.button-3 .right-arrow {
+.right-arrow {
 	color: var(--primary-orange);
+	font-size: 20px;
+}
+
+.button-3-text {
+	opacity: 50%;
+}
+
+.button-3:hover .button-3-text {
+	opacity: 100%;
 }
