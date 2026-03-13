@@ -1,22 +1,33 @@
 "use client";
 
+import styles from "@/components/layout/styles/Navbar.module.css";
 import { useMediaQueryContext } from "@/contexts/useMediaQueryContext";
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
 function NavLinks() {
 	return (
-		<div className="nav-links">
-			<Link className="nav-link sub-title" href="/">
+		<div className={styles["nav-links"]}>
+			<Link className={`${styles["nav-link"]} sub-title`} href="/">
 				Home
 			</Link>
-			<Link className="nav-link sub-title" href="/headphones">
+			<Link
+				className={`${styles["nav-link"]} sub-title`}
+				href="/headphones"
+			>
 				Headphones
 			</Link>
-			<Link className="nav-link sub-title" href="/speakers">
+			<Link
+				className={`${styles["nav-link"]} sub-title`}
+				href="/speakers"
+			>
 				Speakers
 			</Link>
-			<Link className="nav-link sub-title" href="/earphones">
+			<Link
+				className={`${styles["nav-link"]} sub-title`}
+				href="/earphones"
+			>
 				Earphones
 			</Link>
 		</div>
@@ -27,10 +38,12 @@ function AudiophileLogo() {
 	return (
 		<figure>
 			<Link style={{ display: "flex", alignItems: "center" }} href="/">
-				<img
+				<Image
 					style={{ cursor: "pointer" }}
 					src="/shared/desktop/logo.svg"
 					alt="Audiophile Logo"
+					width={143}
+					height={25}
 				/>
 			</Link>
 		</figure>
@@ -41,7 +54,7 @@ function CartLogo() {
 	const [cartIcon, setCartIcon] = useState("/shared/desktop/icon-cart.svg");
 
 	return (
-		<img
+		<Image
 			onMouseOver={() =>
 				setCartIcon("/shared/desktop/icon-cart-active.svg")
 			}
@@ -49,6 +62,8 @@ function CartLogo() {
 			style={{ cursor: "pointer" }}
 			src={cartIcon}
 			alt="Cart"
+			width={23}
+			height={20}
 		/>
 	);
 }
@@ -59,7 +74,7 @@ function HamburgerLogo() {
 	);
 
 	return (
-		<img
+		<Image
 			onMouseOver={() =>
 				setHamburgerIcon("/shared/tablet/icon-hamburger-active.svg")
 			}
@@ -69,6 +84,8 @@ function HamburgerLogo() {
 			style={{ cursor: "pointer" }}
 			src={hamburgerIcon}
 			alt="Hamburger Menu"
+			width={16}
+			height={15}
 		/>
 	);
 }
@@ -78,8 +95,8 @@ export default function Navbar() {
 
 	if (view == "desktop") {
 		return (
-			<nav className="navbar">
-				<div className="navbar-content-container">
+			<nav className={styles["navbar"]}>
+				<div className={styles["navbar-content-container"]}>
 					<AudiophileLogo />
 					<CartLogo />
 				</div>
@@ -90,8 +107,8 @@ export default function Navbar() {
 
 	if (view == "tablet") {
 		return (
-			<nav className="navbar">
-				<div className="navbar-content-container">
+			<nav className={styles["navbar"]}>
+				<div className={styles["navbar-content-container"]}>
 					<div
 						style={{
 							display: "flex",
@@ -110,8 +127,8 @@ export default function Navbar() {
 
 	if (view == "mobile") {
 		return (
-			<nav className="navbar">
-				<div className="navbar-content-container">
+			<nav className={styles["navbar"]}>
+				<div className={styles["navbar-content-container"]}>
 					<HamburgerLogo />
 					<AudiophileLogo />
 					<CartLogo />

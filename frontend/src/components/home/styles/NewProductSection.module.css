@@ -1,6 +1,10 @@
+.new-product-image-container {
+	position: absolute;
+	left: 0;
+}
+
 .new-product-image {
 	position: absolute;
-	z-index: -1;
 	width: 100vw;
 	object-fit: contain;
 	background-color: var(--eerie-black);

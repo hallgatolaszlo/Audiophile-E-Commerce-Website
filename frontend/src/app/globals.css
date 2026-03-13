@@ -1,18 +1,17 @@
-@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap");
-@import "./_styles/Navbar.css";
-@import "./_styles/NewProductSection.css";
+@import "@/app/text.css";
 
 :root {
 	/* Colors */
-	--primary-orange: #d87d4a;
-	--primary-orange-light: #fbaf85;
-	--dark-tone-ink: #121212;
+	--raw-sienna: #d87d4a;
+	--peach: #fbaf85;
 	--eerie-black: #191919;
-	--jet-black: #101010;
-	--pure-black: #000000;
-	--dark-gray: #313131;
-	--light-gray: #f1f1f1;
-	--off-white: #fafafa;
+	--smoky-black: #101010;
+	--black: #000000;
+	--onyx: #313131;
+	--spanish-gray: #979797;
+	--davys-gray: #4c4c4c;
+	--seashell: #f1f1f1;
+	--alabaster: #fafafa;
 	--white: #ffffff;
 
 	/* Font */
@@ -20,6 +19,12 @@
 
 	/* Sizing */
 	--navbar-height: 97px;
+	--border-radius: 8px;
+
+	/* Spacing */
+	--spacing-50: 50px;
+	--spacing-120: 120px;
+	--spacing-168: 168px;
 }
 
 html {
@@ -33,7 +38,7 @@ body {
 	font-weight: 500;
 	font-size: 15;
 	line-height: 25px;
-	background-color: var(--off-white);
+	background-color: var(--alabaster);
 }
 
 * {
@@ -89,72 +94,9 @@ h6 {
 	letter-spacing: 1.3px;
 }
 
-.overline {
-	font-family: var(--font);
-	font-weight: 400;
-	font-size: 14px;
-	text-transform: uppercase;
-	line-height: 19px;
-	letter-spacing: 10px;
-}
-
-.sub-title {
-	font-family: var(--font);
-	font-weight: 700;
-	font-size: 13px;
-	text-transform: uppercase;
-	line-height: 25px;
-	letter-spacing: 1px;
-}
-
 button {
 	width: 160px;
 	height: 48px;
 	border: none;
 	cursor: pointer;
-}
-
-.button-1 {
-	background-color: var(--primary-orange);
-	color: var(--white);
-}
-
-.button-1:hover {
-	background-color: var(--primary-orange-light);
-}
-
-.button-2 {
-	background-color: var(--white);
-	color: var(--pure-black);
-}
-
-.button-2:hover {
-	background-color: var(--pure-black);
-	color: var(--white);
-}
-
-.button-3 {
-	width: fit-content;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	background-color: var(--white);
-	color: var(--pure-black);
-}
-
-.button-3:hover {
-	color: var(--primary-orange);
-}
-
-.right-arrow {
-	color: var(--primary-orange);
-	font-size: 20px;
-}
-
-.button-3-text {
-	opacity: 50%;
-}
-
-.button-3:hover .button-3-text {
-	opacity: 100%;
 }

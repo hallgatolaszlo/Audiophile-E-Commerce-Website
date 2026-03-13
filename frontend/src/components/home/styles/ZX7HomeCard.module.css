@@ -1,0 +1,19 @@
+.zx7-home-card {
+	position: relative;
+	height: 320px;
+	background-size: cover;
+	z-index: 8;
+	border-radius: var(--border-radius);
+	display: flex;
+	align-items: center;
+}
+
+.zx7-home-card-content {
+	position: relative;
+	width: 205px;
+	height: fit-content;
+	display: flex;
+	flex-direction: column;
+	gap: 32px;
+	left: 95px;
+}

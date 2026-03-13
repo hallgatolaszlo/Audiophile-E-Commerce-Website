@@ -1,0 +1,37 @@
+.categories-container {
+	margin-top: var(--spacing-120);
+	display: flex;
+	gap: 20px;
+	width: 100%;
+	height: fit-content;
+	flex-wrap: wrap;
+}
+
+.category-card {
+	flex: 1;
+	flex-basis: 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	height: 100%;
+	position: relative;
+	z-index: 6;
+	height: 285px;
+}
+
+.category-card-background {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 75%;
+	border-radius: var(--border-radius);
+	background-color: var(--seashell);
+	z-index: -1;
+}
+
+.category-image {
+	position: relative;
+	max-height: 200px;
+	height: 100%;
+	z-index: 6;
+}

@@ -1,0 +1,9 @@
+.button-4 {
+	background-color: var(--black);
+	color: var(--white);
+}
+
+.button-4:hover {
+	background-color: var(--davys-gray);
+	color: var(--white);
+}

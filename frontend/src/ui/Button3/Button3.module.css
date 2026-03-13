@@ -1,0 +1,21 @@
+.button-3 {
+	width: fit-content;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	justify-content: center;
+	background-color: transparent;
+	color: var(--black);
+}
+
+.button-3:hover {
+	color: var(--raw-sienna);
+}
+
+.button-3-text {
+	opacity: 0.5;
+}
+
+.button-3:hover .button-3-text {
+	opacity: 1;
+}

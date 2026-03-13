@@ -1,13 +1,16 @@
 "use client";
 
+import styles from "@/components/home/styles/NewProductSection.module.css";
 import { useMediaQueryContext } from "@/contexts/useMediaQueryContext";
+import Button1 from "@/ui/Button1/Button1";
+import Image from "next/image";
 
-export default function NewProductSection() {
+export function NewProductSection() {
 	const { view } = useMediaQueryContext();
 
 	return (
 		<div
-			className="new-product-text-container"
+			className={styles["new-product-text-container"]}
 			style={{
 				height:
 					view == "mobile"
@@ -21,12 +24,35 @@ export default function NewProductSection() {
 	);
 }
 
+export function NewProductImage() {
+	const { view } = useMediaQueryContext();
+	const heroImageSrc =
+		view == "desktop"
+			? `/home/${view}/image-hero.jpg`
+			: `/home/${view}/image-header.jpg`;
+
+	return (
+		<figure className={styles["new-product-image-container"]}>
+			<Image
+				className={styles["new-product-image"]}
+				style={{
+					height: view == "mobile" ? "600px" : "729px",
+				}}
+				src={heroImageSrc}
+				alt="Hero Image"
+				width={1440}
+				height={729}
+			/>
+		</figure>
+	);
+}
+
 function NewProductText() {
 	const { view } = useMediaQueryContext();
 
 	return (
-		<div
-			className="new-product-text"
+		<article
+			className={styles["new-product-text"]}
 			style={{
 				alignItems: view == "desktop" ? "flex-start" : "center",
 			}}
@@ -38,7 +64,7 @@ function NewProductText() {
 					opacity: "49.64%",
 				}}
 			>
-				new product
+				New product
 			</p>
 			<h1
 				style={{
@@ -47,7 +73,7 @@ function NewProductText() {
 					lineHeight: view == "mobile" ? "40px" : "58px",
 				}}
 			>
-				xx99 mark II headphones
+				XX99 mark II headphones
 			</h1>
 			<p
 				style={{
@@ -58,7 +84,7 @@ function NewProductText() {
 				Experience natural, lifelike audio and exceptional build quality
 				made for the passionate music enthusiast.
 			</p>
-			<button className="button-1 sub-title">see product</button>
-		</div>
+			<Button1 />
+		</article>
 	);
 }

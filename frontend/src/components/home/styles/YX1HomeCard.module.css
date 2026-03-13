@@ -1,0 +1,27 @@
+.yx1-home-card {
+	display: flex;
+	flex-basis: 0;
+	gap: 30px;
+	height: 320px;
+	margin-top: var(--spacing-50);
+}
+
+.yx1-home-card-image {
+	border-radius: var(--border-radius);
+}
+
+.yx1-home-card-content {
+	display: flex;
+	background-color: var(--seashell);
+	width: 100%;
+	border-radius: var(--border-radius);
+}
+
+.yx1-home-card-text {
+	position: relative;
+	left: 95px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 32px;
+}

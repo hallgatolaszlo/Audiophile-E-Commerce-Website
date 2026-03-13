@@ -1,7 +1,13 @@
+import "@/app/globals.css";
+import Navbar from "@/components/layout/Navbar";
+import Providers from "@/components/layout/Providers";
 import { Metadata } from "next/dist/lib/metadata/types/metadata-interface";
-import Navbar from "./_components/Navbar";
-import Providers from "./_components/Providers";
-import "./globals.css";
+import { Manrope } from "next/font/google";
+
+const manrope = Manrope({
+	subsets: ["latin"],
+	weight: ["200", "300", "400", "500", "600", "700", "800"],
+});
 
 export const metadata: Metadata = {
 	icons: {
@@ -16,7 +22,7 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-			<body>
+			<body className={manrope.className}>
 				<Providers>
 					<Navbar />
 					{children}
