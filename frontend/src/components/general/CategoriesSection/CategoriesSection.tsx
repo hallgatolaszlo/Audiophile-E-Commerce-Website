@@ -1,4 +1,4 @@
-import styles from "@/components/home/styles/CategoriesSection.module.css";
+import styles from "@/components/general/CategoriesSection/CategoriesSection.module.css";
 import { useMediaQueryContext } from "@/contexts/useMediaQueryContext";
 import Button3 from "@/ui/Button3/Button3";
 import Image from "next/image";
@@ -10,8 +10,6 @@ function CategoryCard({
 	imageSrc: string;
 	altText: string;
 }) {
-	const { view } = useMediaQueryContext();
-
 	return (
 		<article className={styles["category-card"]}>
 			<div className={styles["category-card-background"]}></div>

@@ -1,0 +1,18 @@
+.category-header-container {
+	width: 200vw;
+	margin-left: -50vw;
+	height: 239px;
+	position: absolute;
+	background-color: var(--black);
+	z-index: -1;
+}
+
+.category-header {
+	text-align: center;
+	height: 239px;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: var(--white);
+}

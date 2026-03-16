@@ -1,4 +1,4 @@
-.home-page {
+.page {
 	padding: 0 20px;
 	width: 100%;
 	min-height: 100vh;
@@ -7,7 +7,7 @@
 	align-items: center;
 }
 
-.home-page-content {
+.page-content {
 	width: 100%;
 	max-width: 1110px;
 	padding-top: var(--navbar-height);

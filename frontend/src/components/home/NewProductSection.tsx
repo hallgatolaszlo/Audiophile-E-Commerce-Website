@@ -55,6 +55,7 @@ function NewProductText() {
 			className={styles["new-product-text"]}
 			style={{
 				alignItems: view == "desktop" ? "flex-start" : "center",
+				textAlign: view == "desktop" ? "left" : "center",
 			}}
 		>
 			<p

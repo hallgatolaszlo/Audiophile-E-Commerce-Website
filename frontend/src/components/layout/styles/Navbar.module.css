@@ -5,7 +5,7 @@
 	justify-content: center;
 	position: fixed;
 	height: var(--navbar-height);
-	background-color: var(--eerie-black);
+	background-color: var(--black);
 	padding: 0 20px;
 	z-index: 10;
 }
@@ -34,4 +34,8 @@
 
 .nav-link:hover {
 	color: var(--raw-sienna);
+}
+
+.navbar-home-top {
+	background-color: transparent;
 }
