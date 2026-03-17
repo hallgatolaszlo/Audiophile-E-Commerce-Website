@@ -1,6 +1,7 @@
 "use client";
 
 import { getProductBySlug } from "@/api/products";
+import ProductCard from "@/components/general/ProductCard/ProductCard";
 import styles from "@/components/layout/styles/Page.module.css";
 import { useQuery } from "@tanstack/react-query";
 import ErrorPage from "next/error";
@@ -19,6 +20,10 @@ export default function ProductPage() {
 		return <ErrorPage statusCode={404} />;
 	}
 
+	if (isLoading || !data) {
+		return <div>Loading...</div>;
+	}
+
 	return (
 		<>
 			<Helmet>
@@ -26,7 +31,7 @@ export default function ProductPage() {
 			</Helmet>
 			<main className={styles["page"]}>
 				<div className={styles["page-content"]}>
-					<h1>{data?.Name}</h1>
+					<ProductCard product={data!} isPurchaseSection={true} />
 				</div>
 			</main>
 		</>

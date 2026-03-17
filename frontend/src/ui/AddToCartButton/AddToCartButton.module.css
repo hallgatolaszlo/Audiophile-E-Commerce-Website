@@ -1,0 +1,8 @@
+.add-to-cart-button {
+	background-color: var(--raw-sienna);
+	color: var(--white);
+}
+
+.add-to-cart-button:hover {
+	background-color: var(--peach);
+}

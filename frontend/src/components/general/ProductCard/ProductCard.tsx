@@ -1,6 +1,7 @@
 import styles from "@/components/general/ProductCard/ProductCard.module.css";
 import { useMediaQueryContext } from "@/contexts/useMediaQueryContext";
 import { Product } from "@/types/product";
+import AddToCartButton from "@/ui/AddToCartButton/AddToCartButton";
 import Button1 from "@/ui/Button1/Button1";
 import Image from "next/image";
 import type { CSSProperties } from "react";
@@ -67,12 +68,45 @@ const VIEW_STYLES: Record<View, ProductCardViewConfig> = {
 	},
 };
 
+function SeeProductButton({ product }: { product: Product }) {
+	return (
+		<Button1
+			productSlug={{
+				category: product.Category,
+				slug: product.Slug,
+			}}
+		/>
+	);
+}
+
+function NumberSelect() {
+	return (
+		<div>
+			<button>-</button>
+			<span>1</span>
+			<button>+</button>
+		</div>
+	);
+}
+
+function ProductPurchaseSection({ product }: { product: Product }) {
+	return (
+		<div>
+			<h6>{`$ ${product.Price.toLocaleString()}`}</h6>
+			<NumberSelect />
+			<AddToCartButton slug={product.Slug} />
+		</div>
+	);
+}
+
 export default function ProductCard({
 	product,
 	reverse = false,
+	isPurchaseSection = false,
 }: {
 	product: Product;
 	reverse?: boolean;
+	isPurchaseSection?: boolean;
 }) {
 	const { view } = useMediaQueryContext();
 	const viewStyles = VIEW_STYLES[view];
@@ -115,12 +149,10 @@ export default function ProductCard({
 				>
 					{product.Description}
 				</p>
-				<Button1
-					productSlug={{
-						category: product.Category,
-						slug: product.Slug,
-					}}
-				/>
+				{isPurchaseSection && (
+					<ProductPurchaseSection product={product} />
+				)}
+				{!isPurchaseSection && <SeeProductButton product={product} />}
 			</div>
 		</div>
 	);
