@@ -19,7 +19,9 @@ export default function ZX7HomeCard() {
 				style={{ left: leftPosition }}
 			>
 				<h4>ZX7 Speaker</h4>
-				<Button2 />
+				<Button2
+					productSlug={{ category: "speakers", slug: "zx7-speaker" }}
+				/>
 			</section>
 		</article>
 	);

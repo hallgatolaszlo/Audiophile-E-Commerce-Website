@@ -1,5 +1,6 @@
 "use client";
 
+import ClickOutside from "@/components/layout/ClickOutside";
 import styles from "@/components/layout/styles/Navbar.module.css";
 import { useMediaQueryContext } from "@/contexts/useMediaQueryContext";
 import Image from "next/image";
@@ -7,9 +8,18 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
-export function NavLinks({ style }: { style?: React.CSSProperties }) {
+export function NavLinks({
+	style,
+	className,
+}: {
+	style?: React.CSSProperties;
+	className?: string;
+}) {
 	return (
-		<div className={styles["nav-links"]} style={style}>
+		<div
+			className={`${styles["nav-links"]} ${className || ""}`}
+			style={style}
+		>
 			<Link className={`${styles["nav-link"]} sub-title`} href="/">
 				Home
 			</Link>
@@ -69,21 +79,32 @@ function CartLogo() {
 	);
 }
 
-function HamburgerLogo() {
-	const [hamburgerIcon, setHamburgerIcon] = useState(
-		"/shared/tablet/icon-hamburger.svg",
+function NavLinksPopup() {
+	return <NavLinks className={styles["nav-links-popup"]} />;
+}
+
+function HamburgerLogo({
+	onClick,
+	pressed,
+}: {
+	onClick?: () => void;
+	pressed?: boolean;
+}) {
+	const [hamburgerIcon, setHamburgerIcon] = useState<"active" | "inactive">(
+		"inactive",
 	);
 
 	return (
 		<Image
-			onMouseOver={() =>
-				setHamburgerIcon("/shared/tablet/icon-hamburger-active.svg")
-			}
-			onMouseOut={() =>
-				setHamburgerIcon("/shared/tablet/icon-hamburger.svg")
-			}
+			onClick={onClick}
+			onMouseOver={() => setHamburgerIcon("active")}
+			onMouseOut={() => setHamburgerIcon("inactive")}
 			style={{ cursor: "pointer" }}
-			src={hamburgerIcon}
+			src={
+				hamburgerIcon === "active" || pressed
+					? "/shared/tablet/icon-hamburger-active.svg"
+					: "/shared/tablet/icon-hamburger.svg"
+			}
 			alt="Hamburger Menu"
 			width={16}
 			height={15}
@@ -96,6 +117,7 @@ export default function Navbar() {
 	const pathname = usePathname();
 	const isHomePage = pathname === "/";
 	const [isScrolled, setIsScrolled] = useState(false);
+	const [showPopup, setShowPopup] = useState(false);
 
 	useEffect(() => {
 		const onScroll = () => setIsScrolled(window.scrollY > 20);
@@ -131,7 +153,16 @@ export default function Navbar() {
 							alignItems: "center",
 						}}
 					>
-						<HamburgerLogo />
+						<ClickOutside onClick={() => setShowPopup(false)}>
+							{showPopup && <NavLinksPopup />}
+							<HamburgerLogo
+								pressed={showPopup}
+								onClick={() => {
+									if (!showPopup) setShowPopup(true);
+									else setShowPopup(false);
+								}}
+							/>
+						</ClickOutside>
 						<AudiophileLogo />
 					</div>
 					<CartLogo />
@@ -144,7 +175,16 @@ export default function Navbar() {
 		return (
 			<nav className={navbarClass}>
 				<div className={styles["navbar-content-container"]}>
-					<HamburgerLogo />
+					<ClickOutside onClick={() => setShowPopup(false)}>
+						{showPopup && <NavLinksPopup />}
+						<HamburgerLogo
+							pressed={showPopup}
+							onClick={() => {
+								if (!showPopup) setShowPopup(true);
+								else setShowPopup(false);
+							}}
+						/>
+					</ClickOutside>
 					<AudiophileLogo />
 					<CartLogo />
 				</div>

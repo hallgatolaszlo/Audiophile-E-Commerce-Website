@@ -8,22 +8,29 @@ import styles from "@/components/layout/styles/Page.module.css";
 import { Product } from "@/types/product";
 import CategoryHeader from "@/ui/CategoryHeader/CategoryHeader";
 import { useQuery } from "@tanstack/react-query";
+import { useParams } from "next/navigation";
 import { Helmet } from "react-helmet-async";
 
-export default function Earphones() {
+export default function CategoryPage() {
+	const { category } = useParams<{ category: string }>();
+
 	const { data, isLoading, isError } = useQuery({
-		queryKey: ["products", "earphones"],
-		queryFn: async () => getProductsByCategory("earphones"),
+		queryKey: ["products", category],
+		queryFn: async () => getProductsByCategory(category),
 	});
 
 	return (
 		<>
 			<Helmet>
-				<title>Earphones | audiophile</title>
+				<title>{`${category.charAt(0).toUpperCase() + category.slice(1)} | audiophile`}</title>
 			</Helmet>
 			<main className={styles["page"]}>
 				<div className={styles["page-content"]}>
-					<CategoryHeader text="Earphones" />
+					<CategoryHeader
+						text={
+							category.charAt(0).toUpperCase() + category.slice(1)
+						}
+					/>
 					{data?.map((product: Product, index: number) => (
 						<ProductCard
 							reverse={index % 2 === 1}

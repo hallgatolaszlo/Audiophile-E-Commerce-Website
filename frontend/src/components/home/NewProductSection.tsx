@@ -85,7 +85,12 @@ function NewProductText() {
 				Experience natural, lifelike audio and exceptional build quality
 				made for the passionate music enthusiast.
 			</p>
-			<Button1 />
+			<Button1
+				productSlug={{
+					category: "headphones",
+					slug: "xx99-mark-two-headphones",
+				}}
+			/>
 		</article>
 	);
 }

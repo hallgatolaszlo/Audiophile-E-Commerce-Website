@@ -31,5 +31,6 @@
 
 .category-image {
 	position: relative;
+	height: auto;
 	z-index: 6;
 }

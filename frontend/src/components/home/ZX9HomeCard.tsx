@@ -56,7 +56,9 @@ function ZX9Card({ view }: { view: string }) {
 					Upgrade to premium speakers that are phenomenally built to
 					deliver truly remarkable sound.
 				</p>
-				<Button4 />
+				<Button4
+					productSlug={{ category: "speakers", slug: "zx9-speaker" }}
+				/>
 			</section>
 		</article>
 	);

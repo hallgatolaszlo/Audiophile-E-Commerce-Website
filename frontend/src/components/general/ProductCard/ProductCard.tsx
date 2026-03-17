@@ -97,9 +97,14 @@ export default function ProductCard({
 				className={styles["product-card-content"]}
 				style={viewStyles.content}
 			>
-				<p className="overline" style={{ color: "var(--raw-sienna)" }}>
-					New product
-				</p>
+				{product.New && (
+					<p
+						className="overline"
+						style={{ color: "var(--raw-sienna)" }}
+					>
+						New product
+					</p>
+				)}
 				<h2 style={{ marginTop: "16px" }}>{product.Name}</h2>
 				<p
 					style={{
@@ -110,7 +115,12 @@ export default function ProductCard({
 				>
 					{product.Description}
 				</p>
-				<Button1 />
+				<Button1
+					productSlug={{
+						category: product.Category,
+						slug: product.Slug,
+					}}
+				/>
 			</div>
 		</div>
 	);

@@ -1,10 +1,10 @@
 "use client";
 
+import { AudiophileLogo, NavLinks } from "@/components/layout/Navbar";
 import styles from "@/components/layout/styles/Footer.module.css";
 import { useMediaQueryContext } from "@/contexts/useMediaQueryContext";
 import Image from "next/image";
 import { useState } from "react";
-import { AudiophileLogo, NavLinks } from "./Navbar";
 
 const DESCRIPTION_TEXT =
 	"Audiophile is an all in one stop to fulfill your audio needs. We're a small team of music lovers and sound specialists who are devoted to helping you get the most out of personal audio. Come and visit our demo facility - we’re open 7 days a week.";

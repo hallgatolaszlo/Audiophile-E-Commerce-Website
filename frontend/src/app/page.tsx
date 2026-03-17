@@ -12,7 +12,7 @@ import AboutSection from "@/components/general/AboutSection/AboutSection";
 import YX1HomeCard from "@/components/home/YX1HomeCard";
 import ZX7HomeCard from "@/components/home/ZX7HomeCard";
 import ZX9HomeCard from "@/components/home/ZX9HomeCard";
-export default function Home() {
+export default function HomePage() {
 	return (
 		<>
 			<Helmet>

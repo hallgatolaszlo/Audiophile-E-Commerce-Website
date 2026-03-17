@@ -15,15 +15,23 @@ export async function getProductsByCategory(
 	category: string,
 ): Promise<Product[]> {
 	try {
-		const response = await api.get<Product[]>(
-			`/products/category/${category}`,
-		);
+		const response = await api.get<Product[]>(`/products/${category}`);
 		return response.data;
 	} catch (error) {
 		console.error(
 			`Error fetching products for category ${category}:`,
 			error,
 		);
+		throw error;
+	}
+}
+
+export async function getProductBySlug(slug: string): Promise<Product> {
+	try {
+		const response = await api.get<Product>(`/products/${slug}`);
+		return response.data;
+	} catch (error) {
+		console.error(`Error fetching product with slug ${slug}:`, error);
 		throw error;
 	}
 }

@@ -56,7 +56,12 @@ export default function YX1HomeCard() {
 					}}
 				>
 					<h4>YX1 Earphones</h4>
-					<Button2 />
+					<Button2
+						productSlug={{
+							category: "earphones",
+							slug: "yx1-earphones",
+						}}
+					/>
 				</div>
 			</section>
 		</article>

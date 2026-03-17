@@ -1,9 +1,20 @@
-import styles from "@/ui/Button1/Button1.module.css";
+"use client";
 
-export default function Button1({ content }: { content?: string }) {
+import styles from "@/ui/Button1/Button1.module.css";
+import Link from "next/link";
+
+export default function Button1({
+	content,
+	productSlug,
+}: {
+	content?: string;
+	productSlug: { category: string; slug: string };
+}) {
 	return (
-		<button className={`${styles["button-1"]} sub-title`}>
-			{content || "See product"}
-		</button>
+		<Link href={`/${productSlug.category}/${productSlug.slug}`}>
+			<button className={`${styles["button-1"]} sub-title`}>
+				{content || "See product"}
+			</button>
+		</Link>
 	);
 }
