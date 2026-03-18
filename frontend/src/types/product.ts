@@ -8,6 +8,7 @@ export type RelatedProduct = {
 	ID: number;
 	Slug: string;
 	Name: string;
+	Category: string;
 };
 
 export type Product = {

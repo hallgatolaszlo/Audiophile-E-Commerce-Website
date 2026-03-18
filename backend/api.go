@@ -22,7 +22,8 @@ func getProducts() ([]Product, error) {
 		i.quantity,
 		rp.id,
 		rp.slug,
-		rp.name
+		rp.name,
+		rp.category
 	FROM
 		Products p
 	LEFT JOIN IncludedJoins ij ON
@@ -59,7 +60,8 @@ func getProductsByCategory(category string) ([]Product, error) {
 		i.quantity,
 		rp.id,
 		rp.slug,
-		rp.name
+		rp.name,
+		rp.category
 	FROM
 		Products p
 	LEFT JOIN IncludedJoins ij ON
@@ -98,7 +100,8 @@ func getProductBySlug(category string, slug string) (*Product, error) {
 		i.quantity,
 		rp.id,
 		rp.slug,
-		rp.name
+		rp.name,
+		rp.category
 	FROM
 		Products p
 	LEFT JOIN IncludedJoins ij ON
@@ -141,13 +144,13 @@ func handleProductQuery(rows *sql.Rows) ([]Product, error) {
 			new                                         bool
 			incItem                                     sql.NullString
 			incQty                                      sql.NullInt64
-			relSlug, relName                            sql.NullString
+			relSlug, relName, relCategory               sql.NullString
 		)
 
 		err := rows.Scan(
 			&pID, &slug, &name, &category, &new, &price, &description, &features,
 			&incID, &incItem, &incQty,
-			&relID, &relSlug, &relName,
+			&relID, &relSlug, &relName, &relCategory,
 		)
 		if err != nil {
 			log.Fatal(err)
@@ -197,9 +200,10 @@ func handleProductQuery(rows *sql.Rows) ([]Product, error) {
 			}
 			if !exists {
 				p.Related = append(p.Related, RelatedProduct{
-					ID:   int(relID.Int64),
-					Slug: relSlug.String,
-					Name: relName.String,
+					ID:       int(relID.Int64),
+					Slug:     relSlug.String,
+					Name:     relName.String,
+					Category: relCategory.String,
 				})
 			}
 		}

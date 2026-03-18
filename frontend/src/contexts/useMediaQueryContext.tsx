@@ -17,7 +17,7 @@ export const MediaQueryContext = createContext<MediaQueryContextValue | null>(
 
 export default function MediaQueryProvider({ children }: Props) {
 	const isDesktop = useMedia("(min-width: 1025px)");
-	const isTablet = useMedia("(min-width: 601px)");
+	const isTablet = useMedia("(min-width: 696px)");
 
 	const view: View = isDesktop ? "desktop" : isTablet ? "tablet" : "mobile";
 

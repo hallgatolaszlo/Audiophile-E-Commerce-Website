@@ -17,10 +17,15 @@
 }
 
 @media (max-width: 1023px) {
+	.about-section {
+		height: auto;
+	}
+
 	.about-section-image {
 		width: 100%;
 		object-fit: cover;
 	}
+
 	.about-section-text {
 		text-align: center;
 		padding: 0 58px;

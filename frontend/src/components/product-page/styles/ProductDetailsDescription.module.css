@@ -1,0 +1,45 @@
+.product-details {
+	display: flex;
+	gap: 125px;
+	width: 100%;
+	margin-top: 160px;
+}
+
+.product-features {
+	display: flex;
+	flex-direction: column;
+	gap: 32px;
+	width: 100%;
+}
+
+.product-features p {
+	opacity: 0.5;
+}
+
+.product-in-the-box {
+	display: flex;
+	flex-direction: column;
+	gap: 32px;
+	width: 100%;
+	max-width: 549px;
+}
+
+.product-includes-items {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+}
+
+.product-includes-item-container {
+	display: flex;
+	gap: 24px;
+}
+
+.product-includes-quantity {
+	font-weight: 700;
+	color: var(--raw-sienna);
+}
+
+.product-includes-item-name {
+	opacity: 0.5;
+}

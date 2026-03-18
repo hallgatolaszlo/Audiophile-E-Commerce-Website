@@ -1,0 +1,27 @@
+.related-products-container {
+	display: flex;
+	flex-direction: column;
+	gap: 64px;
+	align-items: center;
+	margin-top: 160px;
+}
+
+.related-products {
+	display: flex;
+	gap: 30px;
+}
+
+.related-product {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	gap: 40px;
+	align-items: center;
+	text-align: center;
+}
+
+.related-product-image {
+	border-radius: var(--border-radius);
+	width: 100%;
+	height: auto;
+}

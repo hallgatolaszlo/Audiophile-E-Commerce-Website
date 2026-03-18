@@ -1,9 +1,9 @@
 "use client";
 
 import { getProductsByCategory } from "@/api/products";
-import AboutSection from "@/components/general/AboutSection/AboutSection";
-import CategoriesSection from "@/components/general/CategoriesSection/CategoriesSection";
-import ProductCard from "@/components/general/ProductCard/ProductCard";
+import AboutSection from "@/components/general/AboutSection";
+import CategoriesSection from "@/components/general/CategoriesSection";
+import ProductCard from "@/components/general/ProductCard";
 import styles from "@/components/layout/styles/Page.module.css";
 import { Product } from "@/types/product";
 import CategoryHeader from "@/ui/CategoryHeader/CategoryHeader";

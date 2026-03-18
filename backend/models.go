@@ -20,7 +20,8 @@ type IncludedItem struct {
 }
 
 type RelatedProduct struct {
-	ID   int
-	Slug string
-	Name string
+	ID       int
+	Slug     string
+	Name     string
+	Category string
 }

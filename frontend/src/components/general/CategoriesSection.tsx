@@ -1,4 +1,4 @@
-import styles from "@/components/general/CategoriesSection/CategoriesSection.module.css";
+import styles from "@/components/general/styles/CategoriesSection.module.css";
 import { useMediaQueryContext } from "@/contexts/useMediaQueryContext";
 import Button3 from "@/ui/Button3/Button3";
 import Image from "next/image";
@@ -13,7 +13,7 @@ function CategoryCard({
 	category: string;
 }) {
 	return (
-		<article className={styles["category-card"]}>
+		<section className={styles["category-card"]}>
 			<div className={styles["category-card-background"]}></div>
 			<figure>
 				<Image
@@ -26,7 +26,7 @@ function CategoryCard({
 			</figure>
 			<h6>{altText}</h6>
 			<Button3 productSlug={{ category: category, slug: "" }} />
-		</article>
+		</section>
 	);
 }
 
@@ -34,7 +34,7 @@ export default function CategoriesSection() {
 	const { view } = useMediaQueryContext();
 
 	return (
-		<div
+		<article
 			className={styles["categories-container"]}
 			style={{
 				flexDirection: view == "mobile" ? "column" : "row",
@@ -55,6 +55,6 @@ export default function CategoriesSection() {
 				altText="Earphones"
 				category="earphones"
 			/>
-		</div>
+		</article>
 	);
 }

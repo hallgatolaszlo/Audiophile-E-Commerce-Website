@@ -10,7 +10,10 @@ export default function Button3({
 	productSlug: { category: string; slug: string };
 }) {
 	return (
-		<Link href={`/${productSlug.category}/${productSlug.slug}`}>
+		<Link
+			style={{ textDecoration: "none" }}
+			href={`/${productSlug.category}/${productSlug.slug}`}
+		>
 			<button className={`${styles["button-3"]} sub-title`}>
 				<span className={styles["button-3-text"]}>
 					{content || "Shop"}

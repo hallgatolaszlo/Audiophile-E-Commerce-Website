@@ -1,10 +1,9 @@
-import styles from "@/components/general/ProductCard/ProductCard.module.css";
+import styles from "@/components/product-page/styles/ProductDetailsCard.module.css";
 import { useMediaQueryContext } from "@/contexts/useMediaQueryContext";
 import { Product } from "@/types/product";
 import AddToCartButton from "@/ui/AddToCartButton/AddToCartButton";
-import Button1 from "@/ui/Button1/Button1";
 import Image from "next/image";
-import type { CSSProperties } from "react";
+import { useState, type CSSProperties } from "react";
 
 const HEIGHT_DESKTOP = 560;
 const HEIGHT_TABLET = 671;
@@ -43,91 +42,84 @@ const VIEW_STYLES: Record<View, ProductCardViewConfig> = {
 		container: {
 			height: HEIGHT_TABLET,
 			gap: GAP_TABLET,
-			flexDirection: "column",
-			textAlign: "center",
+			flexDirection: "row",
 		},
 		image: {
-			width: 689,
-			height: 352,
+			width: 280,
+			height: 480,
 			style: { width: "100%", objectFit: "cover" },
 		},
-		content: { maxWidth: "572px", alignItems: "center" },
+		content: { maxWidth: "572px" },
 	},
 	mobile: {
 		container: {
 			height: HEIGHT_MOBILE,
 			gap: GAP_MOBILE,
 			flexDirection: "column",
-			textAlign: "center",
 		},
 		image: {
 			width: 327,
-			height: 352,
+			height: 327,
 		},
-		content: { alignItems: "center" },
+		content: {},
 	},
 };
 
-function SeeProductButton({ product }: { product: Product }) {
-	return (
-		<Button1
-			productSlug={{
-				category: product.Category,
-				slug: product.Slug,
-			}}
-		/>
-	);
-}
-
 function NumberSelect() {
+	const [number, setNumber] = useState(1);
+
 	return (
-		<div>
-			<button>-</button>
-			<span>1</span>
-			<button>+</button>
+		<div className={styles["number-select"]}>
+			<button
+				onClick={() => setNumber(Math.max(1, number - 1))}
+				className={styles["number-select-button"]}
+			>
+				<span style={{ opacity: 0.25 }}>-</span>
+			</button>
+			<span className={styles["number-select-text"]}>{number}</span>
+			<button
+				onClick={() => setNumber(number + 1)}
+				className={styles["number-select-button"]}
+			>
+				<span style={{ opacity: 0.25 }}>+</span>
+			</button>
 		</div>
 	);
 }
 
 function ProductPurchaseSection({ product }: { product: Product }) {
 	return (
-		<div>
+		<div className={styles["purchase-section"]}>
 			<h6>{`$ ${product.Price.toLocaleString()}`}</h6>
-			<NumberSelect />
-			<AddToCartButton slug={product.Slug} />
+			<div className={styles["add-to-cart-section"]}>
+				<NumberSelect />
+				<AddToCartButton slug={product.Slug} />
+			</div>
 		</div>
 	);
 }
 
-export default function ProductCard({
-	product,
-	reverse = false,
-	isPurchaseSection = false,
-}: {
-	product: Product;
-	reverse?: boolean;
-	isPurchaseSection?: boolean;
-}) {
+export default function ProductDetailsCard({ product }: { product: Product }) {
 	const { view } = useMediaQueryContext();
 	const viewStyles = VIEW_STYLES[view];
 
 	const containerStyle: CSSProperties = {
 		...viewStyles.container,
-		flexDirection:
-			view === "desktop" ? (reverse ? "row-reverse" : "row") : "column",
 	};
 
 	return (
-		<div className={styles["product-card"]} style={containerStyle}>
-			<Image
-				className={styles["product-card-image"]}
-				style={viewStyles.image.style}
-				src={`/product-${product.Slug}/${view}/image-category-page-preview.jpg`}
-				alt={product.Name}
-				width={viewStyles.image.width}
-				height={viewStyles.image.height}
-			/>
-			<div
+		<article className={styles["product-card"]} style={containerStyle}>
+			<figure style={{ display: "contents" }}>
+				<Image
+					className={styles["product-card-image"]}
+					style={viewStyles.image.style}
+					src={`/product-${product.Slug}/${view}/image-product.jpg`}
+					alt={product.Name}
+					width={viewStyles.image.width}
+					height={viewStyles.image.height}
+				/>
+			</figure>
+			<section
 				className={styles["product-card-content"]}
 				style={viewStyles.content}
 			>
@@ -139,7 +131,9 @@ export default function ProductCard({
 						New product
 					</p>
 				)}
-				<h2 style={{ marginTop: "16px" }}>{product.Name}</h2>
+				<header style={{ display: "contents" }}>
+					<h2 style={{ marginTop: "16px" }}>{product.Name}</h2>
+				</header>
 				<p
 					style={{
 						marginTop: "32px",
@@ -149,11 +143,8 @@ export default function ProductCard({
 				>
 					{product.Description}
 				</p>
-				{isPurchaseSection && (
-					<ProductPurchaseSection product={product} />
-				)}
-				{!isPurchaseSection && <SeeProductButton product={product} />}
-			</div>
-		</div>
+				<ProductPurchaseSection product={product} />
+			</section>
+		</article>
 	);
 }

@@ -1,4 +1,4 @@
-import styles from "@/components/general/AboutSection/AboutSection.module.css";
+import styles from "@/components/general/styles/AboutSection.module.css";
 import { useMediaQueryContext } from "@/contexts/useMediaQueryContext";
 import Image from "next/image";
 
