@@ -1,5 +1,6 @@
 "use client";
 
+import CartModal from "@/components/layout/CartModal";
 import ClickOutside from "@/components/layout/ClickOutside";
 import styles from "@/components/layout/styles/Navbar.module.css";
 import { useMediaQueryContext } from "@/contexts/useMediaQueryContext";
@@ -61,11 +62,12 @@ export function AudiophileLogo() {
 	);
 }
 
-function CartLogo() {
+function CartLogo({ onClick }: { onClick?: () => void }) {
 	const [cartIcon, setCartIcon] = useState("/shared/desktop/icon-cart.svg");
 
 	return (
 		<Image
+			onClick={onClick}
 			onMouseOver={() =>
 				setCartIcon("/shared/desktop/icon-cart-active.svg")
 			}
@@ -118,6 +120,7 @@ export default function Navbar() {
 	const isHomePage = pathname === "/";
 	const [isScrolled, setIsScrolled] = useState(false);
 	const [showPopup, setShowPopup] = useState(false);
+	const [showCartPopup, setShowCartPopup] = useState(true);
 
 	useEffect(() => {
 		const onScroll = () => setIsScrolled(window.scrollY > 20);
@@ -135,7 +138,16 @@ export default function Navbar() {
 			<nav className={navbarClass}>
 				<div className={styles["navbar-content-container"]}>
 					<AudiophileLogo />
-					<CartLogo />
+					<CartLogo onClick={() => setShowCartPopup(true)} />
+					<ClickOutside onClick={() => setShowCartPopup(false)}>
+						<CartModal
+							isOpen={showCartPopup}
+							onClose={() => setShowCartPopup(false)}
+						>
+							<h3>Your Cart</h3>
+							<p>Cart content would go here.</p>
+						</CartModal>
+					</ClickOutside>
 				</div>
 				<NavLinks />
 			</nav>

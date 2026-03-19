@@ -65,9 +65,13 @@ const VIEW_STYLES: Record<View, ProductCardViewConfig> = {
 	},
 };
 
-function NumberSelect() {
-	const [number, setNumber] = useState(1);
-
+export function NumberSelect({
+	number,
+	setNumber,
+}: {
+	number: number;
+	setNumber: (num: number) => void;
+}) {
 	return (
 		<div className={styles["number-select"]}>
 			<button
@@ -88,12 +92,14 @@ function NumberSelect() {
 }
 
 function ProductPurchaseSection({ product }: { product: Product }) {
+	const [quantity, setQuantity] = useState(1);
+
 	return (
 		<div className={styles["purchase-section"]}>
 			<h6>{`$ ${product.Price.toLocaleString()}`}</h6>
 			<div className={styles["add-to-cart-section"]}>
-				<NumberSelect />
-				<AddToCartButton slug={product.Slug} />
+				<NumberSelect number={quantity} setNumber={setQuantity} />
+				<AddToCartButton slug={product.Slug} quantity={quantity} />
 			</div>
 		</div>
 	);
