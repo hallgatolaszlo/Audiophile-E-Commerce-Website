@@ -6,13 +6,23 @@ import Link from "next/link";
 export default function Button1({
 	content,
 	productSlug,
+	style,
 }: {
 	content?: string;
-	productSlug: { category: string; slug: string };
+	productSlug?: { category: string; slug: string };
+	style?: React.CSSProperties;
 }) {
+	if (!productSlug) {
+		return (
+			<button className={`${styles["button-1"]} sub-title`} style={style}>
+				{content || "See product"}
+			</button>
+		);
+	}
+
 	return (
 		<Link href={`/${productSlug.category}/${productSlug.slug}`}>
-			<button className={`${styles["button-1"]} sub-title`}>
+			<button className={`${styles["button-1"]} sub-title`} style={style}>
 				{content || "See product"}
 			</button>
 		</Link>

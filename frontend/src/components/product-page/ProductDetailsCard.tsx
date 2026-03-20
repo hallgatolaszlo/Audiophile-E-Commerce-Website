@@ -66,26 +66,38 @@ const VIEW_STYLES: Record<View, ProductCardViewConfig> = {
 };
 
 export function NumberSelect({
+	width = 120,
+	height = 48,
 	number,
 	setNumber,
+	canDelete = false,
 }: {
+	width?: number;
+	height?: number;
 	number: number;
 	setNumber: (num: number) => void;
+	canDelete?: boolean;
 }) {
 	return (
-		<div className={styles["number-select"]}>
+		<div className={styles["number-select"]} style={{ width, height }}>
 			<button
-				onClick={() => setNumber(Math.max(1, number - 1))}
+				onClick={() =>
+					setNumber(
+						canDelete
+							? Math.max(0, number - 1)
+							: Math.max(1, number - 1),
+					)
+				}
 				className={styles["number-select-button"]}
 			>
-				<span style={{ opacity: 0.25 }}>-</span>
+				<span className="sub-title">-</span>
 			</button>
 			<span className={styles["number-select-text"]}>{number}</span>
 			<button
 				onClick={() => setNumber(number + 1)}
 				className={styles["number-select-button"]}
 			>
-				<span style={{ opacity: 0.25 }}>+</span>
+				<span className="sub-title">+</span>
 			</button>
 		</div>
 	);
@@ -96,10 +108,14 @@ function ProductPurchaseSection({ product }: { product: Product }) {
 
 	return (
 		<div className={styles["purchase-section"]}>
-			<h6>{`$ ${product.Price.toLocaleString()}`}</h6>
+			<h6>{`$ ${product.Price}`}</h6>
 			<div className={styles["add-to-cart-section"]}>
 				<NumberSelect number={quantity} setNumber={setQuantity} />
-				<AddToCartButton slug={product.Slug} quantity={quantity} />
+				<AddToCartButton
+					slug={product.Slug}
+					quantity={quantity}
+					price={product.Price}
+				/>
 			</div>
 		</div>
 	);

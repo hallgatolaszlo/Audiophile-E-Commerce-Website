@@ -19,7 +19,7 @@ export default function ProductPage() {
 
 	const { data, isLoading, isError } = useQuery({
 		queryKey: ["product", slug],
-		queryFn: async () => getProductBySlug(`/${category}/${slug}`),
+		queryFn: async () => getProductBySlug(slug),
 	});
 
 	if (isError) {

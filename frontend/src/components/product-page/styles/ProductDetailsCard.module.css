@@ -15,22 +15,31 @@
 }
 
 .number-select {
-	width: 120px;
-	height: 48px;
 	background-color: var(--seashell);
 	display: flex;
 	align-items: center;
 }
 
 .number-select-button {
+	height: 100%;
 	min-width: 0;
 	flex: 1;
+}
+
+.number-select-button span {
+	opacity: 0.25;
+}
+
+.number-select-button:hover span {
+	color: var(--raw-sienna);
+	opacity: 1;
 }
 
 .number-select-text {
 	text-align: center;
 	min-width: 0;
 	flex: 1;
+	font-weight: 700;
 }
 
 .purchase-section {

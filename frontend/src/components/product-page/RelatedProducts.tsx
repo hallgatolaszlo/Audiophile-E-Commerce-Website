@@ -4,15 +4,7 @@ import { Product } from "@/types/product";
 import Button1 from "@/ui/Button1/Button1";
 import Image from "next/image";
 
-function RelatedProductCard({
-	slug,
-	name,
-	category,
-}: {
-	slug: string;
-	name: string;
-	category: string;
-}) {
+function RelatedProductCard({ product }: { product: Product }) {
 	const { view } = useMediaQueryContext();
 
 	return (
@@ -20,14 +12,16 @@ function RelatedProductCard({
 			<figure>
 				<Image
 					className={styles["related-product-image"]}
-					src={`/shared/${view}/image-${slug}.jpg`}
-					alt={name}
+					src={`/shared/${view}/image-${product.Slug}.jpg`}
+					alt={product.Name}
 					width={350}
 					height={318}
 				/>
 			</figure>
-			<h5>{name.replace("Headphones", "")}</h5>
-			<Button1 productSlug={{ category: category, slug: slug }} />
+			<h5>{product.NameMedium}</h5>
+			<Button1
+				productSlug={{ category: product.Category, slug: product.Slug }}
+			/>
 		</section>
 	);
 }
@@ -48,9 +42,7 @@ export default function RelatedProducts({ product }: { product: Product }) {
 				{product.Related.map((relatedProduct) => (
 					<RelatedProductCard
 						key={relatedProduct.Slug}
-						slug={relatedProduct.Slug}
-						name={relatedProduct.Name}
-						category={relatedProduct.Category}
+						product={relatedProduct}
 					/>
 				))}
 			</div>

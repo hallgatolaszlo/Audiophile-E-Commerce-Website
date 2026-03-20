@@ -28,7 +28,7 @@ export async function getProductsByCategory(
 
 export async function getProductBySlug(slug: string): Promise<Product> {
 	try {
-		const response = await api.get<Product>(`/products/${slug}`);
+		const response = await api.get<Product>(`/products/product/${slug}`);
 		return response.data;
 	} catch (error) {
 		console.error(`Error fetching product with slug ${slug}:`, error);

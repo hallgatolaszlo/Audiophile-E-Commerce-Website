@@ -27,7 +27,7 @@ func main() {
 	router := mux.NewRouter()
 	router.HandleFunc("/products", productsHandler).Methods("GET")
 	router.HandleFunc("/products/{category}", productsByCategoryHandler).Methods("GET")
-	router.HandleFunc("/products/{category}/{slug}", productBySlugHandler).Methods("GET")
+	router.HandleFunc("/products/product/{slug}", productBySlugHandler).Methods("GET")
 
 	log.Fatal(http.ListenAndServe(":8080", withCORS(router)))
 }

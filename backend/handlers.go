@@ -37,10 +37,9 @@ func productsByCategoryHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func productBySlugHandler(w http.ResponseWriter, r *http.Request) {
-	category := mux.Vars(r)["category"]
 	slug := mux.Vars(r)["slug"]
 
-	product, err := getProductBySlug(category, slug)
+	product, err := getProductBySlug(slug)
 
 	if err != nil {
 		http.Error(w, err.Error(), 500)

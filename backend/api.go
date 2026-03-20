@@ -12,6 +12,8 @@ func getProducts() ([]Product, error) {
 		p.id,
 		p.slug,
 		p.name,
+		p.name_medium,
+		p.name_short,
 		p.category,
 		p.new,
 		p.price,
@@ -23,7 +25,13 @@ func getProducts() ([]Product, error) {
 		rp.id,
 		rp.slug,
 		rp.name,
-		rp.category
+		rp.name_medium,
+		rp.name_short,
+		rp.category,
+		rp.new,
+		rp.price,
+		rp.description,
+		rp.features
 	FROM
 		Products p
 	LEFT JOIN IncludedJoins ij ON
@@ -50,6 +58,8 @@ func getProductsByCategory(category string) ([]Product, error) {
 		p.id,
 		p.slug,
 		p.name,
+		p.name_medium,
+		p.name_short,
 		p.category,
 		p.new,
 		p.price,
@@ -61,7 +71,13 @@ func getProductsByCategory(category string) ([]Product, error) {
 		rp.id,
 		rp.slug,
 		rp.name,
-		rp.category
+		rp.name_medium,
+		rp.name_short,
+		rp.category,
+		rp.new,
+		rp.price,
+		rp.description,
+		rp.features
 	FROM
 		Products p
 	LEFT JOIN IncludedJoins ij ON
@@ -84,12 +100,14 @@ func getProductsByCategory(category string) ([]Product, error) {
 	return handleProductQuery(rows)
 }
 
-func getProductBySlug(category string, slug string) (*Product, error) {
+func getProductBySlug(slug string) (*Product, error) {
 	query := `
 	SELECT
 		p.id,
 		p.slug,
 		p.name,
+		p.name_medium,
+		p.name_short,
 		p.category,
 		p.new,
 		p.price,
@@ -101,7 +119,13 @@ func getProductBySlug(category string, slug string) (*Product, error) {
 		rp.id,
 		rp.slug,
 		rp.name,
-		rp.category
+		rp.name_medium,
+		rp.name_short,
+		rp.category,
+		rp.new,
+		rp.price,
+		rp.description,
+		rp.features
 	FROM
 		Products p
 	LEFT JOIN IncludedJoins ij ON
@@ -112,12 +136,12 @@ func getProductBySlug(category string, slug string) (*Product, error) {
 		pj.product1_id = p.id
 	LEFT JOIN Products rp ON
 		rp.id = pj.product2_id
-	WHERE p.category = ? AND p.slug = ?
+	WHERE  p.slug = ?
 	ORDER BY
 		p.id;
 	`
 
-	rows, err := db.Query(query, category, slug)
+	rows, err := db.Query(query, slug)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -138,19 +162,21 @@ func handleProductQuery(rows *sql.Rows) ([]Product, error) {
 
 	for rows.Next() {
 		var (
-			pID, incID, relID                           sql.NullInt64
-			slug, name, category, description, features string
-			price                                       int
-			new                                         bool
-			incItem                                     sql.NullString
-			incQty                                      sql.NullInt64
-			relSlug, relName, relCategory               sql.NullString
+			pID, incID, rpID                                                                 sql.NullInt64
+			slug, name, nameMedium, nameShort, category, description, features               string
+			price                                                                            int
+			new                                                                              bool
+			incItem                                                                          sql.NullString
+			incQty                                                                           sql.NullInt64
+			rpSlug, rpName, rpNameMedium, rpNameShort, rpCategory, rpDescription, rpFeatures sql.NullString
+			rpPrice                                                                          sql.NullInt64
+			rpNew                                                                            sql.NullBool
 		)
 
 		err := rows.Scan(
-			&pID, &slug, &name, &category, &new, &price, &description, &features,
+			&pID, &slug, &name, &nameMedium, &nameShort, &category, &new, &price, &description, &features,
 			&incID, &incItem, &incQty,
-			&relID, &relSlug, &relName, &relCategory,
+			&rpID, &rpSlug, &rpName, &rpNameMedium, &rpNameShort, &rpCategory, &rpNew, &rpPrice, &rpDescription, &rpFeatures,
 		)
 		if err != nil {
 			log.Fatal(err)
@@ -162,13 +188,15 @@ func handleProductQuery(rows *sql.Rows) ([]Product, error) {
 				ID:          int(pID.Int64),
 				Slug:        slug,
 				Name:        name,
+				NameMedium:  nameMedium,
+				NameShort:   nameShort,
 				Category:    category,
 				Description: description,
 				Features:    features,
 				Price:       price,
 				New:         new,
 				Included:    []IncludedItem{},
-				Related:     []RelatedProduct{},
+				Related:     []Product{},
 			}
 			products[p.ID] = p
 		}
@@ -190,23 +218,30 @@ func handleProductQuery(rows *sql.Rows) ([]Product, error) {
 			}
 		}
 
-		if relID.Valid {
+		if rpID.Valid {
 			exists := false
 			for _, item := range p.Related {
-				if item.ID == int(relID.Int64) {
+				if item.ID == int(rpID.Int64) {
 					exists = true
 					break
 				}
 			}
 			if !exists {
-				p.Related = append(p.Related, RelatedProduct{
-					ID:       int(relID.Int64),
-					Slug:     relSlug.String,
-					Name:     relName.String,
-					Category: relCategory.String,
+				p.Related = append(p.Related, Product{
+					ID:          int(rpID.Int64),
+					Slug:        rpSlug.String,
+					Name:        rpName.String,
+					NameMedium:  rpNameMedium.String,
+					NameShort:   rpNameShort.String,
+					Category:    rpCategory.String,
+					Description: rpDescription.String,
+					Features:    rpFeatures.String,
+					Price:       int(rpPrice.Int64),
+					New:         bool(rpNew.Bool),
 				})
 			}
 		}
+
 	}
 	var result []Product
 	for _, p := range products {

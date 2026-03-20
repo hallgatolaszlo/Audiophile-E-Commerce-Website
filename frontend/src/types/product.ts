@@ -4,22 +4,17 @@ export type IncludedItem = {
 	Quantity: number;
 };
 
-export type RelatedProduct = {
-	ID: number;
-	Slug: string;
-	Name: string;
-	Category: string;
-};
-
 export type Product = {
 	ID: number;
 	Slug: string;
 	Name: string;
+	NameMedium: string;
+	NameShort: string;
 	Category: string;
 	New: boolean;
 	Price: number;
 	Description: string;
 	Features: string;
 	Included: IncludedItem[];
-	Related: RelatedProduct[];
+	Related: Product[];
 };

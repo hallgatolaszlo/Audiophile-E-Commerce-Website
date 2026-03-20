@@ -120,7 +120,7 @@ export default function Navbar() {
 	const isHomePage = pathname === "/";
 	const [isScrolled, setIsScrolled] = useState(false);
 	const [showPopup, setShowPopup] = useState(false);
-	const [showCartPopup, setShowCartPopup] = useState(true);
+	const [showCartPopup, setShowCartPopup] = useState(false);
 
 	useEffect(() => {
 		const onScroll = () => setIsScrolled(window.scrollY > 20);
@@ -139,15 +139,10 @@ export default function Navbar() {
 				<div className={styles["navbar-content-container"]}>
 					<AudiophileLogo />
 					<CartLogo onClick={() => setShowCartPopup(true)} />
-					<ClickOutside onClick={() => setShowCartPopup(false)}>
-						<CartModal
-							isOpen={showCartPopup}
-							onClose={() => setShowCartPopup(false)}
-						>
-							<h3>Your Cart</h3>
-							<p>Cart content would go here.</p>
-						</CartModal>
-					</ClickOutside>
+					<CartModal
+						isOpen={showCartPopup}
+						onClose={() => setShowCartPopup(false)}
+					/>
 				</div>
 				<NavLinks />
 			</nav>

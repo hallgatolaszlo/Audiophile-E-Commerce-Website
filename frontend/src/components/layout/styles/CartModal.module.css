@@ -1,0 +1,10 @@
+.remove-all {
+	text-decoration: underline;
+	opacity: 0.5;
+}
+
+.remove-all:hover {
+	opacity: 1;
+	color: var(--raw-sienna);
+	cursor: pointer;
+}
