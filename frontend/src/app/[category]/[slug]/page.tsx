@@ -8,9 +8,9 @@ import ProductDetailsCard from "@/components/product-page/ProductDetailsCard";
 import ProductDetailsDescription from "@/components/product-page/ProductDetailsDescription";
 import ProductGallery from "@/components/product-page/ProductGallery";
 import RelatedProducts from "@/components/product-page/RelatedProducts";
+import GoBackButton from "@/ui/GoBackButton/GoBackButton";
 import { useQuery } from "@tanstack/react-query";
 import ErrorPage from "next/error";
-import Link from "next/link";
 import { useParams } from "next/navigation";
 import { Helmet } from "react-helmet-async";
 
@@ -41,23 +41,7 @@ export default function ProductPage() {
 			</Helmet>
 			<main className={styles["page"]}>
 				<div className={styles["page-content"]}>
-					<Link
-						style={{
-							textDecoration: "none",
-							display: "block",
-							marginTop: "79px",
-						}}
-						href={`/${category}`}
-					>
-						<span
-							style={{
-								color: "var(--black)",
-								opacity: 0.5,
-							}}
-						>
-							Go Back
-						</span>
-					</Link>
+					<GoBackButton />
 					<div
 						style={{
 							display: "flex",

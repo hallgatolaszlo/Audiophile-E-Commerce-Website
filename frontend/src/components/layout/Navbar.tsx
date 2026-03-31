@@ -173,6 +173,10 @@ export default function Navbar() {
 						<AudiophileLogo />
 					</div>
 					<CartLogo />
+					<CartModal
+						isOpen={showCartPopup}
+						onClose={() => setShowCartPopup(false)}
+					/>
 				</div>
 			</nav>
 		);
@@ -194,6 +198,10 @@ export default function Navbar() {
 					</ClickOutside>
 					<AudiophileLogo />
 					<CartLogo />
+					<CartModal
+						isOpen={showCartPopup}
+						onClose={() => setShowCartPopup(false)}
+					/>
 				</div>
 			</nav>
 		);

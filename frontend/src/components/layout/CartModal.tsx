@@ -35,33 +35,18 @@ function CartModalCard({
 	}
 
 	return (
-		<div
-			style={{
-				height: "64px",
-				width: "100%",
-				display: "flex",
-				justifyContent: "space-between",
-				alignItems: "center",
-			}}
-		>
-			<div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
+		<div className={styles.card}>
+			<div className={styles.cardLeft}>
 				<Image
 					src={`/cart/image-${data.Slug}.jpg`}
 					alt={data.Name}
 					width={64}
 					height={64}
-					style={{ borderRadius: "var(--border-radius)" }}
+					className={styles.productImage}
 				/>
-				<div
-					style={{
-						display: "flex",
-						flexDirection: "column",
-					}}
-				>
-					<p style={{ fontWeight: 700 }}>{data.NameShort}</p>
-					<p
-						style={{ opacity: 0.5, fontWeight: 700 }}
-					>{`$ ${data.Price}`}</p>
+				<div className={styles.cardText}>
+					<p className={styles.productName}>{data.NameShort}</p>
+					<p className={styles.productPrice}>{`$ ${data.Price}`}</p>
 				</div>
 			</div>
 			<NumberSelect
@@ -114,34 +99,28 @@ function CartModalContent({ onClose }: { onClose?: () => void }) {
 
 	if (cartContent.length === 0) {
 		return (
-			<div
-				style={{
-					display: "flex",
-					justifyContent: "center",
-					alignItems: "center",
-					height: "100%",
-				}}
-			>
+			<div className={styles.empty}>
 				<h6>Your cart is empty</h6>
 			</div>
 		);
 	}
 
 	return (
-		<div style={{ display: "flex", flexDirection: "column", gap: "32px" }}>
-			<div style={{ display: "flex", justifyContent: "space-between" }}>
+		<div className={styles.content}>
+			<div className={styles.headerRow}>
 				<h6>Cart ({cartContent.length})</h6>
-				<p className={styles["remove-all"]}>Remove all</p>
+				<p
+					onClick={() => {
+						setCartContent([]);
+						localStorage.removeItem("cart");
+					}}
+					className={styles["remove-all"]}
+				>
+					Remove all
+				</p>
 			</div>
-			<div
-				style={{
-					display: "flex",
-					flexDirection: "column",
-					gap: "24px",
-					height: "240px",
-					overflowY: "auto",
-				}}
-			>
+
+			<div className={styles.itemsList}>
 				{cartContent.map((item) => (
 					<CartModalCard
 						key={item.slug}
@@ -160,22 +139,15 @@ function CartModalContent({ onClose }: { onClose?: () => void }) {
 					/>
 				))}
 			</div>
-			<div
-				style={{
-					display: "flex",
-					flexDirection: "column",
-					gap: "24px",
-				}}
-			>
-				<div
-					style={{ display: "flex", justifyContent: "space-between" }}
-				>
-					<p style={{ opacity: 0.5 }}>TOTAL</p>
-					<p style={{ fontWeight: 700 }}>{`$ ${total}`}</p>
+
+			<div className={styles.summary}>
+				<div className={styles.totalRow}>
+					<p className={styles.totalLabel}>TOTAL</p>
+					<p className={styles.totalValue}>{`$ ${total}`}</p>
 				</div>
 				<Link
 					onClick={onClose}
-					style={{ width: "100%" }}
+					className={styles.checkoutLink}
 					href="/checkout"
 				>
 					<Button1 style={{ width: "100%" }} content="Checkout" />
@@ -205,6 +177,7 @@ export default function CartModal({
 				left: 0,
 				right: 0,
 				bottom: 0,
+				padding: "0 20px",
 				backgroundColor: "rgba(0, 0, 0, 0.5)",
 				display: "flex",
 				justifyContent: "center",

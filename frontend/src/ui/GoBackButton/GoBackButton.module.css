@@ -1,0 +1,13 @@
+.go-back-button {
+	text-decoration: none;
+	display: block;
+	margin-top: 79px;
+	color: var(--black);
+	opacity: 0.5;
+	cursor: pointer;
+}
+
+.go-back-button:hover {
+	color: var(--raw-sienna);
+	opacity: 1;
+}

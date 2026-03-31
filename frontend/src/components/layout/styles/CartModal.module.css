@@ -8,3 +8,115 @@
 	color: var(--raw-sienna);
 	cursor: pointer;
 }
+
+.overlay {
+	position: fixed;
+	inset: 0;
+	padding: 0 20px;
+	background-color: rgba(0, 0, 0, 0.5);
+	display: flex;
+	justify-content: center;
+	z-index: 1000;
+}
+
+.positioner {
+	display: flex;
+	justify-content: flex-end;
+	position: relative;
+	max-width: 1110px;
+	width: 100%;
+	padding-top: var(--navbar-height);
+}
+
+.panel {
+	position: relative;
+	top: 32px;
+	max-width: 377px;
+	width: 100%;
+	max-height: 488px;
+	height: 100%;
+	background-color: var(--white);
+	padding: 30px;
+	border-radius: var(--border-radius);
+}
+
+.content {
+	display: flex;
+	flex-direction: column;
+	gap: 32px;
+}
+
+.headerRow {
+	display: flex;
+	justify-content: space-between;
+}
+
+.empty {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+}
+
+.itemsList {
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+	height: 240px;
+	overflow-y: auto;
+}
+
+.card {
+	height: 64px;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.cardLeft {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+}
+
+.productImage {
+	border-radius: var(--border-radius);
+}
+
+.cardText {
+	display: flex;
+	flex-direction: column;
+}
+
+.productName {
+	font-weight: 700;
+}
+
+.productPrice {
+	opacity: 0.5;
+	font-weight: 700;
+}
+
+.summary {
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+}
+
+.totalRow {
+	display: flex;
+	justify-content: space-between;
+}
+
+.totalLabel {
+	opacity: 0.5;
+}
+
+.totalValue {
+	font-weight: 700;
+}
+
+.checkoutLink {
+	width: 100%;
+}

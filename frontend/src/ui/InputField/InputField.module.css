@@ -1,0 +1,43 @@
+.input-field {
+	border-radius: var(--border-radius);
+	border: 1px solid #cfcfcf;
+	padding: 16px 24px;
+	font-size: 14px;
+	font-weight: 700;
+}
+
+.input-field:hover {
+	border: 1px solid var(--peach);
+}
+
+.input-field:focus {
+	border: 1px solid var(--raw-sienna);
+	outline: none;
+	caret-color: var(--raw-sienna);
+}
+
+.input-field:active {
+	border: 1px solid var(--raw-sienna);
+	outline: none;
+	caret-color: var(--raw-sienna);
+}
+
+.input-label {
+	display: block;
+	font-size: 12px;
+	font-weight: 700;
+}
+
+.input-field.error {
+	border: 2px solid var(--error);
+}
+
+.input-label.error {
+	color: var(--error);
+}
+
+.error-message {
+	color: var(--error);
+	font-size: 12px;
+	font-weight: 500;
+}
