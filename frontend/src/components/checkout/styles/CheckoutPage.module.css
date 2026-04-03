@@ -1,0 +1,25 @@
+.mainDesktop {
+	--page-background: var(--seashell);
+}
+
+.mainMobile {
+	--page-background: var(--white);
+}
+
+.pageContent {
+	margin-bottom: 141px;
+}
+
+.layout {
+	display: flex;
+	gap: 30px;
+	margin-top: 38px;
+}
+
+.layoutRow {
+	flex-direction: row;
+}
+
+.layoutColumn {
+	flex-direction: column;
+}

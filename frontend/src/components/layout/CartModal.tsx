@@ -1,7 +1,12 @@
 import { getProductBySlug } from "@/api/products";
 import styles from "@/components/layout/styles/CartModal.module.css";
 import Button1 from "@/ui/Button1/Button1";
-import { ChangeLocalStorageCartItemQuantity } from "@/utils/LocalStorageManager";
+import {
+	ChangeLocalStorageCartItemQuantity,
+	GetLocalStorageCart,
+	SetLocalStorageCart,
+	type CartItem,
+} from "@/utils/LocalStorageManager";
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import Link from "next/link";
@@ -12,12 +17,10 @@ import { NumberSelect } from "../product-page/ProductDetailsCard";
 function CartModalCard({
 	slug,
 	initialQuantity,
-	price,
 	onChange,
 }: {
 	slug: string;
 	initialQuantity: number;
-	price: number;
 	onChange?: () => void;
 }) {
 	const [quantity, setQuantity] = useState(initialQuantity);
@@ -68,7 +71,7 @@ function CartModalCard({
 					ChangeLocalStorageCartItemQuantity({
 						slug,
 						quantity: newQuantity,
-						price,
+						price: data.Price,
 					});
 					onChange?.();
 				}}
@@ -79,13 +82,11 @@ function CartModalCard({
 }
 
 function CartModalContent({ onClose }: { onClose?: () => void }) {
-	const [cartContent, setCartContent] = useState<
-		{ slug: string; quantity: number; price: number }[]
-	>(
-		localStorage.getItem("cart")
-			? JSON.parse(localStorage.getItem("cart")!)
-			: [],
-	);
+	const [cartContent, setCartContent] = useState<CartItem[]>([]);
+
+	useEffect(() => {
+		setCartContent(GetLocalStorageCart());
+	}, []);
 
 	const [total, setTotal] = useState(0);
 	useEffect(() => {
@@ -112,7 +113,7 @@ function CartModalContent({ onClose }: { onClose?: () => void }) {
 				<p
 					onClick={() => {
 						setCartContent([]);
-						localStorage.removeItem("cart");
+						SetLocalStorageCart([]);
 					}}
 					className={styles["remove-all"]}
 				>
@@ -126,15 +127,8 @@ function CartModalContent({ onClose }: { onClose?: () => void }) {
 						key={item.slug}
 						slug={item.slug}
 						initialQuantity={item.quantity}
-						price={item.price}
 						onChange={() => {
-							setCartContent(
-								JSON.parse(
-									localStorage.getItem("cart")
-										? localStorage.getItem("cart")!
-										: "[]",
-								),
-							);
+							setCartContent(GetLocalStorageCart());
 						}}
 					/>
 				))}
@@ -165,6 +159,7 @@ export default function CartModal({
 	onClose: () => void;
 }) {
 	if (!isOpen) return null;
+	if (typeof document === "undefined") return null;
 
 	return createPortal(
 		<div

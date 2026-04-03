@@ -1,3 +1,5 @@
+import styles from "@/components/checkout/styles/BillingDetails.module.css";
+import { useMediaQueryContext } from "@/contexts/useMediaQueryContext";
 import InputField from "@/ui/InputField/InputField";
 import { Controller } from "react-hook-form";
 
@@ -10,6 +12,8 @@ export default function BillingDetails({
 	errors: any;
 	onSubmit: () => void;
 }) {
+	const { view } = useMediaQueryContext();
+
 	return (
 		<div
 			onKeyDown={(e) => {
@@ -17,23 +21,14 @@ export default function BillingDetails({
 			}}
 		>
 			<div>
-				<p
-					className="sub-title"
-					style={{
-						color: "var(--raw-sienna)",
-						marginTop: "41px",
-						marginBottom: "16px",
-					}}
-				>
+				<p className={`sub-title ${styles.sectionTitle}`}>
 					Billing details
 				</p>
 			</div>
 			<div
-				style={{
-					display: "flex",
-					gap: "16px",
-					width: "100%",
-				}}
+				className={`${styles.row} ${
+					view === "mobile" ? styles.rowColumn : styles.rowRow
+				}`}
 			>
 				<Controller
 					control={control}
@@ -64,8 +59,8 @@ export default function BillingDetails({
 					)}
 				/>
 			</div>
-			<div style={{ display: "flex", gap: "16px", marginTop: "24px" }}>
-				<div style={{ flex: 1 }}>
+			<div className={styles.phoneRow}>
+				<div className={styles.half}>
 					<Controller
 						control={control}
 						name="phone"
@@ -81,7 +76,7 @@ export default function BillingDetails({
 						)}
 					/>
 				</div>
-				<div style={{ flex: 1 }}></div>
+				{view !== "mobile" && <div className={styles.half}></div>}
 			</div>
 		</div>
 	);

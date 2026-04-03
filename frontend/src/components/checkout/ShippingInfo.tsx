@@ -1,3 +1,5 @@
+import styles from "@/components/checkout/styles/ShippingInfo.module.css";
+import { useMediaQueryContext } from "@/contexts/useMediaQueryContext";
 import InputField from "@/ui/InputField/InputField";
 import { Controller } from "react-hook-form";
 
@@ -10,6 +12,8 @@ export default function ShippingInfo({
 	errors: any;
 	onSubmit: () => void;
 }) {
+	const { view } = useMediaQueryContext();
+
 	return (
 		<div
 			onKeyDown={(e) => {
@@ -17,15 +21,8 @@ export default function ShippingInfo({
 			}}
 		>
 			<div>
-				<p
-					className="sub-title"
-					style={{
-						color: "var(--raw-sienna)",
-						marginTop: "53px",
-						marginBottom: "16px",
-					}}
-				>
-					Shipping information
+				<p className={`sub-title ${styles.sectionTitle}`}>
+					Shipping info
 				</p>
 			</div>
 			<div>
@@ -45,12 +42,9 @@ export default function ShippingInfo({
 				/>
 			</div>
 			<div
-				style={{
-					display: "flex",
-					gap: "16px",
-					width: "100%",
-					marginTop: "24px",
-				}}
+				className={`${styles.twoColRow} ${
+					view === "mobile" ? styles.rowColumn : styles.rowRow
+				}`}
 			>
 				<Controller
 					control={control}
@@ -81,8 +75,8 @@ export default function ShippingInfo({
 					)}
 				/>
 			</div>
-			<div style={{ display: "flex", gap: "16px", marginTop: "24px" }}>
-				<div style={{ flex: 1 }}>
+			<div className={styles.bottomRow}>
+				<div className={styles.half}>
 					<Controller
 						control={control}
 						name="country"
@@ -98,7 +92,7 @@ export default function ShippingInfo({
 						)}
 					/>
 				</div>
-				<div style={{ flex: 1 }}></div>
+				{view !== "mobile" && <div className={styles.half}></div>}
 			</div>
 		</div>
 	);

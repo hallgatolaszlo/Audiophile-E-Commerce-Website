@@ -1,0 +1,43 @@
+.sectionTitle {
+	color: var(--raw-sienna);
+	margin-top: 61px;
+	margin-bottom: 16px;
+}
+
+.container {
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+}
+
+.methodRow {
+	display: flex;
+	gap: 16px;
+}
+
+.row {
+	flex-direction: row;
+}
+
+.column {
+	flex-direction: column;
+}
+
+.methodLabel {
+	font-weight: 700;
+	font-size: 12px;
+	flex: 1;
+}
+
+.radioList {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	min-width: 0;
+}
+
+.eMoneyRow {
+	display: flex;
+	gap: 16px;
+}

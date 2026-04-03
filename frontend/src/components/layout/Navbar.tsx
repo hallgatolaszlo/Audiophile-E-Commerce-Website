@@ -172,7 +172,7 @@ export default function Navbar() {
 						</ClickOutside>
 						<AudiophileLogo />
 					</div>
-					<CartLogo />
+					<CartLogo onClick={() => setShowCartPopup(true)} />
 					<CartModal
 						isOpen={showCartPopup}
 						onClose={() => setShowCartPopup(false)}
@@ -197,7 +197,7 @@ export default function Navbar() {
 						/>
 					</ClickOutside>
 					<AudiophileLogo />
-					<CartLogo />
+					<CartLogo onClick={() => setShowCartPopup(true)} />
 					<CartModal
 						isOpen={showCartPopup}
 						onClose={() => setShowCartPopup(false)}

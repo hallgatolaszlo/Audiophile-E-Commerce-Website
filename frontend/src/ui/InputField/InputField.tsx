@@ -18,20 +18,8 @@ export default function InputField({
 	placeholder?: string;
 }) {
 	return (
-		<div
-			style={{
-				display: "flex",
-				flexDirection: "column",
-				width: "100%",
-			}}
-		>
-			<div
-				style={{
-					display: "flex",
-					justifyContent: "space-between",
-					marginBottom: "9px",
-				}}
-			>
+		<div className={styles.container}>
+			<div className={styles.labelRow}>
 				<label
 					className={`${styles["input-label"]} ${error ? styles["error"] : ""}`}
 					htmlFor="input-field"

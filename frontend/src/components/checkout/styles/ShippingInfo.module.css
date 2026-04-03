@@ -1,0 +1,31 @@
+.sectionTitle {
+	color: var(--raw-sienna);
+	margin-top: 53px;
+	margin-bottom: 16px;
+}
+
+.twoColRow {
+	display: flex;
+	gap: 16px;
+	width: 100%;
+	margin-top: 24px;
+}
+
+.rowColumn {
+	flex-direction: column;
+}
+
+.rowRow {
+	flex-direction: row;
+}
+
+.bottomRow {
+	display: flex;
+	gap: 16px;
+	margin-top: 24px;
+}
+
+.half {
+	flex: 1;
+	min-width: 0;
+}

@@ -7,14 +7,19 @@ export default function Button1({
 	content,
 	productSlug,
 	style,
+	className,
 }: {
 	content?: string;
 	productSlug?: { category: string; slug: string };
 	style?: React.CSSProperties;
+	className?: string;
 }) {
 	if (!productSlug) {
 		return (
-			<button className={`${styles["button-1"]} sub-title`} style={style}>
+			<button
+				className={`${styles["button-1"]} sub-title ${className ?? ""}`}
+				style={style}
+			>
 				{content || "See product"}
 			</button>
 		);
@@ -22,7 +27,10 @@ export default function Button1({
 
 	return (
 		<Link href={`/${productSlug.category}/${productSlug.slug}`}>
-			<button className={`${styles["button-1"]} sub-title`} style={style}>
+			<button
+				className={`${styles["button-1"]} sub-title ${className ?? ""}`}
+				style={style}
+			>
 				{content || "See product"}
 			</button>
 		</Link>
