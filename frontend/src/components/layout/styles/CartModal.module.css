@@ -46,7 +46,7 @@
 	gap: 32px;
 }
 
-.headerRow {
+.header-row {
 	display: flex;
 	justify-content: space-between;
 }
@@ -58,7 +58,7 @@
 	height: 100%;
 }
 
-.itemsList {
+.items-list {
 	display: flex;
 	flex-direction: column;
 	gap: 24px;
@@ -74,26 +74,26 @@
 	align-items: center;
 }
 
-.cardLeft {
+.card-left {
 	display: flex;
 	align-items: center;
 	gap: 16px;
 }
 
-.productImage {
+.product-image {
 	border-radius: var(--border-radius);
 }
 
-.cardText {
+.card-text {
 	display: flex;
 	flex-direction: column;
 }
 
-.productName {
+.product-name {
 	font-weight: 700;
 }
 
-.productPrice {
+.product-price {
 	opacity: 0.5;
 	font-weight: 700;
 }
@@ -104,19 +104,19 @@
 	gap: 24px;
 }
 
-.totalRow {
+.total-row {
 	display: flex;
 	justify-content: space-between;
 }
 
-.totalLabel {
+.total-label {
 	opacity: 0.5;
 }
 
-.totalValue {
+.total-value {
 	font-weight: 700;
 }
 
-.checkoutLink {
+.checkout-link {
 	width: 100%;
 }

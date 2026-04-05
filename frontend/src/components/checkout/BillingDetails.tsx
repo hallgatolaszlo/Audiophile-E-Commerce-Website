@@ -21,13 +21,13 @@ export default function BillingDetails({
 			}}
 		>
 			<div>
-				<p className={`sub-title ${styles.sectionTitle}`}>
+				<p className={`sub-title ${styles["section-title"]}`}>
 					Billing details
 				</p>
 			</div>
 			<div
-				className={`${styles.row} ${
-					view === "mobile" ? styles.rowColumn : styles.rowRow
+				className={`${styles["row"]} ${
+					view === "mobile" ? styles["row-column"] : styles["row-row"]
 				}`}
 			>
 				<Controller
@@ -59,8 +59,8 @@ export default function BillingDetails({
 					)}
 				/>
 			</div>
-			<div className={styles.phoneRow}>
-				<div className={styles.half}>
+			<div className={styles["phone-row"]}>
+				<div className={styles["half"]}>
 					<Controller
 						control={control}
 						name="phone"
@@ -76,7 +76,7 @@ export default function BillingDetails({
 						)}
 					/>
 				</div>
-				{view !== "mobile" && <div className={styles.half}></div>}
+				{view !== "mobile" && <div className={styles["half"]}></div>}
 			</div>
 		</div>
 	);

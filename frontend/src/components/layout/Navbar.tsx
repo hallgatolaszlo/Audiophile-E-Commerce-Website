@@ -1,13 +1,14 @@
 "use client";
 
 import CartModal from "@/components/layout/CartModal";
-import ClickOutside from "@/components/layout/ClickOutside";
 import styles from "@/components/layout/styles/Navbar.module.css";
 import { useMediaQueryContext } from "@/contexts/useMediaQueryContext";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
+import CategoriesSection from "../general/CategoriesSection";
 
 export function NavLinks({
 	style,
@@ -81,8 +82,66 @@ function CartLogo({ onClick }: { onClick?: () => void }) {
 	);
 }
 
-function NavLinksPopup() {
-	return <NavLinks className={styles["nav-links-popup"]} />;
+function MenuModal({
+	isOpen,
+	onClose,
+}: {
+	isOpen: boolean;
+	onClose: () => void;
+}) {
+	if (!isOpen) return null;
+	if (typeof document === "undefined") return null;
+
+	const { view } = useMediaQueryContext();
+	const maxPanelHeight =
+		view === "mobile"
+			? "calc(100vh - var(--navbar-height))"
+			: "min(340px, calc(100vh - var(--navbar-height)))";
+
+	return createPortal(
+		<div
+			onMouseDown={() => {
+				onClose();
+			}}
+			style={{
+				position: "fixed",
+				top: 0,
+				left: 0,
+				right: 0,
+				bottom: 0,
+				backgroundColor: "rgba(0, 0, 0, 0.5)",
+				display: "flex",
+				justifyContent: "center",
+				alignItems: "flex-start",
+				paddingTop: "var(--navbar-height)",
+				zIndex: 1000,
+			}}
+		>
+			<div
+				onMouseDown={(e) => e.stopPropagation()}
+				style={{
+					width: "100%",
+					maxHeight: maxPanelHeight,
+					backgroundColor: "var(--white)",
+					borderRadius:
+						"0 0 var(--border-radius) var(--border-radius)",
+					overflowY: "auto",
+				}}
+			>
+				<div
+					style={{
+						width: "100%",
+						maxWidth: "1110px",
+						margin: "0 auto",
+						padding: "24px 20px",
+					}}
+				>
+					<CategoriesSection style={{ marginTop: 0 }} />
+				</div>
+			</div>
+		</div>,
+		document.body,
+	);
 }
 
 function HamburgerLogo({
@@ -160,16 +219,17 @@ export default function Navbar() {
 							alignItems: "center",
 						}}
 					>
-						<ClickOutside onClick={() => setShowPopup(false)}>
-							{showPopup && <NavLinksPopup />}
-							<HamburgerLogo
-								pressed={showPopup}
-								onClick={() => {
-									if (!showPopup) setShowPopup(true);
-									else setShowPopup(false);
-								}}
-							/>
-						</ClickOutside>
+						<MenuModal
+							isOpen={showPopup}
+							onClose={() => setShowPopup(false)}
+						/>
+						<HamburgerLogo
+							pressed={showPopup}
+							onClick={() => {
+								if (!showPopup) setShowPopup(true);
+								else setShowPopup(false);
+							}}
+						/>
 						<AudiophileLogo />
 					</div>
 					<CartLogo onClick={() => setShowCartPopup(true)} />
@@ -186,16 +246,17 @@ export default function Navbar() {
 		return (
 			<nav className={navbarClass}>
 				<div className={styles["navbar-content-container"]}>
-					<ClickOutside onClick={() => setShowPopup(false)}>
-						{showPopup && <NavLinksPopup />}
-						<HamburgerLogo
-							pressed={showPopup}
-							onClick={() => {
-								if (!showPopup) setShowPopup(true);
-								else setShowPopup(false);
-							}}
-						/>
-					</ClickOutside>
+					<MenuModal
+						isOpen={showPopup}
+						onClose={() => setShowPopup(false)}
+					/>
+					<HamburgerLogo
+						pressed={showPopup}
+						onClick={() => {
+							if (!showPopup) setShowPopup(true);
+							else setShowPopup(false);
+						}}
+					/>
 					<AudiophileLogo />
 					<CartLogo onClick={() => setShowCartPopup(true)} />
 					<CartModal

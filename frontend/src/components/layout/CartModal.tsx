@@ -38,18 +38,18 @@ function CartModalCard({
 	}
 
 	return (
-		<div className={styles.card}>
-			<div className={styles.cardLeft}>
+		<div className={styles["card"]}>
+			<div className={styles["card-left"]}>
 				<Image
 					src={`/cart/image-${data.Slug}.jpg`}
 					alt={data.Name}
 					width={64}
 					height={64}
-					className={styles.productImage}
+					className={styles["product-image"]}
 				/>
-				<div className={styles.cardText}>
-					<p className={styles.productName}>{data.NameShort}</p>
-					<p className={styles.productPrice}>{`$ ${data.Price}`}</p>
+				<div className={styles["card-text"]}>
+					<p className={styles["product-name"]}>{data.NameShort}</p>
+					<p className={styles["product-price"]}>{`$ ${data.Price}`}</p>
 				</div>
 			</div>
 			<NumberSelect
@@ -100,15 +100,15 @@ function CartModalContent({ onClose }: { onClose?: () => void }) {
 
 	if (cartContent.length === 0) {
 		return (
-			<div className={styles.empty}>
+			<div className={styles["empty"]}>
 				<h6>Your cart is empty</h6>
 			</div>
 		);
 	}
 
 	return (
-		<div className={styles.content}>
-			<div className={styles.headerRow}>
+		<div className={styles["content"]}>
+			<div className={styles["header-row"]}>
 				<h6>Cart ({cartContent.length})</h6>
 				<p
 					onClick={() => {
@@ -121,7 +121,7 @@ function CartModalContent({ onClose }: { onClose?: () => void }) {
 				</p>
 			</div>
 
-			<div className={styles.itemsList}>
+			<div className={styles["items-list"]}>
 				{cartContent.map((item) => (
 					<CartModalCard
 						key={item.slug}
@@ -134,14 +134,14 @@ function CartModalContent({ onClose }: { onClose?: () => void }) {
 				))}
 			</div>
 
-			<div className={styles.summary}>
-				<div className={styles.totalRow}>
-					<p className={styles.totalLabel}>TOTAL</p>
-					<p className={styles.totalValue}>{`$ ${total}`}</p>
+			<div className={styles["summary"]}>
+				<div className={styles["total-row"]}>
+					<p className={styles["total-label"]}>TOTAL</p>
+					<p className={styles["total-value"]}>{`$ ${total}`}</p>
 				</div>
 				<Link
 					onClick={onClose}
-					className={styles.checkoutLink}
+					className={styles["checkout-link"]}
 					href="/checkout"
 				>
 					<Button1 style={{ width: "100%" }} content="Checkout" />

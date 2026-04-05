@@ -1,4 +1,4 @@
-.sectionTitle {
+.section-title {
 	color: var(--raw-sienna);
 	margin-top: 41px;
 	margin-bottom: 16px;
@@ -10,15 +10,15 @@
 	width: 100%;
 }
 
-.rowColumn {
+.row-column {
 	flex-direction: column;
 }
 
-.rowRow {
+.row-row {
 	flex-direction: row;
 }
 
-.phoneRow {
+.phone-row {
 	display: flex;
 	gap: 16px;
 	margin-top: 24px;

@@ -60,7 +60,7 @@ export default function CheckoutForm() {
 	});
 
 	return (
-		<div className={styles.container}>
+		<div className={styles["container"]}>
 			<h3>Checkout</h3>
 			<form onSubmit={handleSubmit(onSubmit)}>
 				<BillingDetails

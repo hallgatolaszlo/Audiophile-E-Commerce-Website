@@ -21,7 +21,7 @@ export default function ShippingInfo({
 			}}
 		>
 			<div>
-				<p className={`sub-title ${styles.sectionTitle}`}>
+				<p className={`sub-title ${styles["section-title"]}`}>
 					Shipping info
 				</p>
 			</div>
@@ -42,8 +42,8 @@ export default function ShippingInfo({
 				/>
 			</div>
 			<div
-				className={`${styles.twoColRow} ${
-					view === "mobile" ? styles.rowColumn : styles.rowRow
+				className={`${styles["two-col-row"]} ${
+					view === "mobile" ? styles["row-column"] : styles["row-row"]
 				}`}
 			>
 				<Controller
@@ -75,8 +75,8 @@ export default function ShippingInfo({
 					)}
 				/>
 			</div>
-			<div className={styles.bottomRow}>
-				<div className={styles.half}>
+			<div className={styles["bottom-row"]}>
+				<div className={styles["half"]}>
 					<Controller
 						control={control}
 						name="country"
@@ -92,7 +92,7 @@ export default function ShippingInfo({
 						)}
 					/>
 				</div>
-				{view !== "mobile" && <div className={styles.half}></div>}
+				{view !== "mobile" && <div className={styles["half"]}></div>}
 			</div>
 		</div>
 	);

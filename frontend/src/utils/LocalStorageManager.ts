@@ -1,5 +1,7 @@
 export type CartItem = { slug: string; quantity: number; price: number };
 
+const CART_CHANGE_EVENT = "cart-change";
+
 function getBrowserLocalStorage(): Storage | null {
 	if (typeof window === "undefined") return null;
 
@@ -14,6 +16,11 @@ function getBrowserLocalStorage(): Storage | null {
 	} catch {
 		return null;
 	}
+}
+
+function notifyCartChange() {
+	if (typeof window === "undefined") return;
+	window.dispatchEvent(new Event(CART_CHANGE_EVENT));
 }
 
 export function GetLocalStorageCart(): CartItem[] {
@@ -55,9 +62,11 @@ export function SetLocalStorageCart(items: CartItem[]) {
 	try {
 		if (!items || items.length === 0) {
 			storage.removeItem("cart");
+			notifyCartChange();
 			return;
 		}
 		storage.setItem("cart", JSON.stringify(items));
+		notifyCartChange();
 	} catch {
 		// ignore
 	}

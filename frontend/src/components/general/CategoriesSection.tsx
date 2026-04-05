@@ -30,7 +30,11 @@ function CategoryCard({
 	);
 }
 
-export default function CategoriesSection() {
+export default function CategoriesSection({
+	style,
+}: {
+	style?: React.CSSProperties;
+}) {
 	const { view } = useMediaQueryContext();
 
 	return (
@@ -38,6 +42,7 @@ export default function CategoriesSection() {
 			className={styles["categories-container"]}
 			style={{
 				flexDirection: view == "mobile" ? "column" : "row",
+				...style,
 			}}
 		>
 			<CategoryCard

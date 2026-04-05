@@ -62,7 +62,7 @@ export default function Footer() {
 
 	if (view === "desktop") {
 		return (
-			<footer className={`${styles.footer} ${styles["desktop-footer"]}`}>
+			<footer className={`${styles["footer"]} ${styles["desktop-footer"]}`}>
 				<div className={styles["content-container"]}>
 					<div className={styles["desktop-header-row"]}>
 						<div
@@ -75,14 +75,14 @@ export default function Footer() {
 					</div>
 					<div className={styles["desktop-body-row"]}>
 						<p
-							className={`${styles.description} ${styles["description-desktop"]}`}
+							className={`${styles["description"]} ${styles["description-desktop"]}`}
 						>
 							{DESCRIPTION_TEXT}
 						</p>
 						<Logos />
 					</div>
 					<div className={styles["copyright-row-desktop"]}>
-						<p className={styles.copyright}>{COPYRIGHT_TEXT}</p>
+						<p className={styles["copyright"]}>{COPYRIGHT_TEXT}</p>
 					</div>
 				</div>
 			</footer>
@@ -91,7 +91,7 @@ export default function Footer() {
 
 	if (view === "tablet") {
 		return (
-			<footer className={`${styles.footer} ${styles["tablet-footer"]}`}>
+			<footer className={`${styles["footer"]} ${styles["tablet-footer"]}`}>
 				<div className={styles["content-container"]}>
 					<div
 						className={`${styles["brand-column"]} ${styles["brand-column-tablet"]}`}
@@ -103,12 +103,12 @@ export default function Footer() {
 						style={{ position: "relative", marginTop: "32px" }}
 					/>
 					<p
-						className={`${styles.description} ${styles["description-tablet"]}`}
+						className={`${styles["description"]} ${styles["description-tablet"]}`}
 					>
 						{DESCRIPTION_TEXT}
 					</p>
 					<div className={styles["tablet-bottom-row"]}>
-						<p className={styles.copyright}>{COPYRIGHT_TEXT}</p>
+						<p className={styles["copyright"]}>{COPYRIGHT_TEXT}</p>
 						<Logos />
 					</div>
 				</div>
@@ -118,7 +118,7 @@ export default function Footer() {
 
 	if (view === "mobile") {
 		return (
-			<footer className={`${styles.footer} ${styles["mobile-footer"]}`}>
+			<footer className={`${styles["footer"]} ${styles["mobile-footer"]}`}>
 				<div
 					className={`${styles["content-container"]} ${styles["mobile-content-container"]}`}
 				>
@@ -136,11 +136,11 @@ export default function Footer() {
 						}}
 					/>
 					<p
-						className={`${styles.description} ${styles["description-mobile"]}`}
+						className={`${styles["description"]} ${styles["description-mobile"]}`}
 					>
 						{DESCRIPTION_TEXT}
 					</p>
-					<p className={styles.copyright}>{COPYRIGHT_TEXT}</p>
+					<p className={styles["copyright"]}>{COPYRIGHT_TEXT}</p>
 					<Logos />
 				</div>
 			</footer>

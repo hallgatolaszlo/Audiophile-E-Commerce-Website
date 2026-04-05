@@ -1,4 +1,5 @@
 import { getProductBySlug } from "@/api/products";
+import CheckoutModal from "@/components/checkout/CheckoutModal";
 import styles from "@/components/checkout/styles/Summary.module.css";
 import { useMediaQueryContext } from "@/contexts/useMediaQueryContext";
 import Button1 from "@/ui/Button1/Button1";
@@ -8,7 +9,10 @@ import {
 } from "@/utils/LocalStorageManager";
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
+
+const CART_CHANGE_EVENT = "cart-change";
 
 function SummaryProduct({
 	slug,
@@ -27,23 +31,27 @@ function SummaryProduct({
 	}
 
 	return (
-		<div className={styles.productRow}>
-			<div className={styles.productRowInner}>
+		<div className={styles["product-row"]}>
+			<div className={styles["product-row-inner"]}>
 				<Image
 					src={`/cart/image-${data.Slug}.jpg`}
 					alt={data.Name}
 					width={64}
 					height={64}
-					className={styles.productImage}
+					className={styles["product-image"]}
 				/>
-				<div className={styles.productDetails}>
-					<div className={styles.productText}>
-						<p className={styles.productName}>{data.NameShort}</p>
+				<div className={styles["product-details"]}>
+					<div className={styles["product-text"]}>
+						<p className={styles["product-name"]}>
+							{data.NameShort}
+						</p>
 						<p
-							className={styles.productPrice}
+							className={styles["product-price"]}
 						>{`$ ${data.Price}`}</p>
 					</div>
-					<p className={styles.productQuantity}>{`x${quantity}`}</p>
+					<p
+						className={styles["product-quantity"]}
+					>{`x${quantity}`}</p>
 				</div>
 			</div>
 		</div>
@@ -60,11 +68,85 @@ function PriceRow({
 	valueClassName?: string;
 }) {
 	return (
-		<div className={styles.priceRow}>
-			<p className={styles.priceLabel}>{label}</p>
+		<div className={styles["price-row"]}>
+			<p className={styles["price-label"]}>{label}</p>
 			<h6
-				className={`${styles.priceValue} ${valueClassName ?? ""}`}
+				className={`${styles["price-value"]} ${valueClassName ?? ""}`}
 			>{`$ ${value.toFixed(0)}`}</h6>
+		</div>
+	);
+}
+
+function CheckoutModalContent({
+	cartContent,
+	grandTotal,
+}: {
+	cartContent: CartItem[];
+	grandTotal: number;
+}) {
+	const [showMore, setShowMore] = useState(false);
+	const { view } = useMediaQueryContext();
+
+	return (
+		<div>
+			<Image
+				src="/checkout/icon-order-confirmation.svg"
+				alt="Order Confirmation"
+				width={64}
+				height={64}
+				className={styles["modal-icon"]}
+			/>
+			<h3 className={styles["modal-title"]}>
+				Thank you
+				<br /> for your order
+			</h3>
+			<p className={styles["modal-description"]}>
+				You will receive an email confirmation shortly.
+			</p>
+			<div
+				className={`${styles["modal-summary"]} ${
+					view === "mobile" ? styles["modal-summary-mobile"] : ""
+				}`}
+			>
+				<div className={styles["modal-summary-items"]}>
+					{cartContent
+						.slice(0, showMore ? cartContent.length : 1)
+						.map((item) => (
+							<SummaryProduct
+								key={item.slug}
+								slug={item.slug}
+								quantity={item.quantity}
+							/>
+						))}
+					<span className={styles["modal-summary-divider"]} />
+					<p
+						className={styles["view-more"]}
+						onClick={() => setShowMore(!showMore)}
+					>
+						{showMore
+							? "View less"
+							: `and ${cartContent.length - 1} other item(s)`}
+					</p>
+				</div>
+				<div
+					className={`${styles["modal-summary-total"]} ${
+						showMore ? styles["modal-summary-total-expanded"] : ""
+					}`}
+				>
+					<p className={styles["modal-summary-total-label"]}>
+						Grand total
+					</p>
+					<h6
+						className={styles["modal-summary-total-value"]}
+					>{`$ ${grandTotal.toFixed(0)}`}</h6>
+				</div>
+			</div>
+			<Link href="/" className={styles["back-home-link"]}>
+				<Button1
+					className={styles["back-home-button"]}
+					content="Back to home"
+				/>
+			</Link>
 		</div>
 	);
 }
@@ -72,9 +154,21 @@ function PriceRow({
 export default function Summary() {
 	const { view } = useMediaQueryContext();
 	const [cartContent, setCartContent] = useState<CartItem[]>([]);
+	const [modalOpen, setModalOpen] = useState(false);
 
 	useEffect(() => {
-		setCartContent(GetLocalStorageCart());
+		const refreshCart = () => {
+			setCartContent(GetLocalStorageCart());
+		};
+
+		refreshCart();
+		window.addEventListener(CART_CHANGE_EVENT, refreshCart);
+		window.addEventListener("storage", refreshCart);
+
+		return () => {
+			window.removeEventListener(CART_CHANGE_EVENT, refreshCart);
+			window.removeEventListener("storage", refreshCart);
+		};
 	}, []);
 
 	const [total, setTotal] = useState(0);
@@ -89,12 +183,12 @@ export default function Summary() {
 
 	return (
 		<div
-			className={`${styles.container} ${
-				view === "desktop" ? styles.desktop : ""
+			className={`${styles["container"]} ${
+				view === "desktop" ? styles["desktop"] : ""
 			}`}
 		>
 			<h6>Summary</h6>
-			<div className={styles.itemsList}>
+			<div className={styles["items-list"]}>
 				{cartContent.map((item) => (
 					<SummaryProduct
 						key={item.slug}
@@ -103,8 +197,8 @@ export default function Summary() {
 					/>
 				))}
 			</div>
-			<div className={styles.totals}>
-				<div className={styles.totalRows}>
+			<div className={styles["totals"]}>
+				<div className={styles["total-rows"]}>
 					<PriceRow label="Total" value={total} />
 					<PriceRow label="Shipping" value={50} />
 					<PriceRow label="VAT (Included)" value={total * 0.2} />
@@ -113,13 +207,24 @@ export default function Summary() {
 					<PriceRow
 						label="Grand Total"
 						value={total * 1.2 + 50}
-						valueClassName={styles.grandTotalValue}
+						valueClassName={styles["grand-total-value"]}
 					/>
 				</div>
 			</div>
 			<Button1
-				className={styles.continueButton}
+				className={styles["continue-button"]}
 				content="Continue & Pay"
+				onClick={() => setModalOpen(true)}
+			/>
+			<CheckoutModal
+				isOpen={modalOpen}
+				onClose={() => setModalOpen(false)}
+				content={
+					<CheckoutModalContent
+						cartContent={cartContent}
+						grandTotal={total * 1.2 + 50}
+					/>
+				}
 			/>
 		</div>
 	);

@@ -1,12 +1,12 @@
-.mainDesktop {
+.main-desktop {
 	--page-background: var(--seashell);
 }
 
-.mainMobile {
+.main-mobile {
 	--page-background: var(--white);
 }
 
-.pageContent {
+.page-content {
 	margin-bottom: 141px;
 }
 
@@ -16,10 +16,10 @@
 	margin-top: 38px;
 }
 
-.layoutRow {
+.layout-row {
 	flex-direction: row;
 }
 
-.layoutColumn {
+.layout-column {
 	flex-direction: column;
 }

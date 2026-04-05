@@ -7,7 +7,7 @@
 	height: var(--navbar-height);
 	background-color: var(--black);
 	padding: 0 20px;
-	z-index: 10;
+	z-index: 10000;
 }
 
 .navbar-content-container {
@@ -38,28 +38,4 @@
 
 .navbar-home-top {
 	background-color: transparent;
-}
-
-.nav-links-popup {
-	flex-direction: column;
-	position: absolute;
-	top: calc(var(--navbar-height) - 18px);
-	left: 13px;
-	background-color: var(--eerie-black);
-	border-radius: var(--border-radius);
-	border: 2px solid var(--onyx);
-	padding: 20px;
-}
-
-.nav-links-popup::before {
-	content: "";
-	position: absolute;
-	width: 0;
-	height: 0;
-	left: 5px;
-	top: -14px;
-	border-style: solid;
-	border-width: 0px 8px 12px 8px;
-	border-color: transparent transparent var(--onyx) transparent;
-	transform: rotate(0deg);
 }

@@ -21,12 +21,12 @@ export default function CheckoutPage() {
 			<main
 				className={`${styles["page"]} ${
 					view === "desktop"
-						? checkoutStyles.mainDesktop
-						: checkoutStyles.mainMobile
+						? checkoutStyles["main-desktop"]
+						: checkoutStyles["main-mobile"]
 				}`}
 			>
 				<div
-					className={`${styles["page-content"]} ${checkoutStyles.pageContent}`}
+					className={`${styles["page-content"]} ${checkoutStyles["page-content"]}`}
 				>
 					<GoBackButton
 						style={{
@@ -34,10 +34,10 @@ export default function CheckoutPage() {
 						}}
 					/>
 					<div
-						className={`${checkoutStyles.layout} ${
+						className={`${checkoutStyles["layout"]} ${
 							view === "desktop"
-								? checkoutStyles.layoutRow
-								: checkoutStyles.layoutColumn
+								? checkoutStyles["layout-row"]
+								: checkoutStyles["layout-column"]
 						}`}
 					>
 						<CheckoutForm />
